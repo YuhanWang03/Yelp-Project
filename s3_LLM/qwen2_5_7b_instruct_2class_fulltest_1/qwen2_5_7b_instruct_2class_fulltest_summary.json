@@ -1,0 +1,55 @@
+{
+  "Run_ID": "qwen2_5_7b_instruct_2class_fulltest",
+  "Task_Type": "2_class",
+  "Mode": "Prompt_Inference",
+  "Model": "Qwen/Qwen2.5-7B-Instruct",
+  "Batch_Size": 64,
+  "Accuracy": 0.9816158684083213,
+  "Macro_F1": 0.9816157135022902,
+  "Valid_Prediction_Rate": 1.0,
+  "Strict_Format_Rate": 1.0,
+  "Off_By_1_Acc": null,
+  "Adj_Error_Ratio": null,
+  "Mid_Confusion_Ratio": null,
+  "MSE": 0.018384131591678763,
+  "MAE": 0.018384131591678763,
+  "Eval_Time(s)": 38.210994720458984,
+  "Eval_Speed(s/s)": 108.1887564101169,
+  "Confusion_Matrix": [
+    [
+      2023,
+      46
+    ],
+    [
+      30,
+      2035
+    ]
+  ],
+  "Classification_Report": {
+    "0": {
+      "precision": 0.9853872381880175,
+      "recall": 0.9777670372160464,
+      "f1-score": 0.9815623483745755,
+      "support": 2069.0
+    },
+    "1": {
+      "precision": 0.9778952426717924,
+      "recall": 0.9854721549636803,
+      "f1-score": 0.9816690786300049,
+      "support": 2065.0
+    },
+    "accuracy": 0.9816158684083213,
+    "macro avg": {
+      "precision": 0.981641240429905,
+      "recall": 0.9816195960898634,
+      "f1-score": 0.9816157135022902,
+      "support": 4134.0
+    },
+    "weighted avg": {
+      "precision": 0.9816448650044169,
+      "recall": 0.9816158684083213,
+      "f1-score": 0.9816156618669465,
+      "support": 4134.0
+    }
+  }
+}

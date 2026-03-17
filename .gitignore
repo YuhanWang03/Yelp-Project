@@ -1,0 +1,8 @@
+data/raw/
+submit_nlp.sh
+.idea/
+s1_baseline_models/
+s2_bert_models/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

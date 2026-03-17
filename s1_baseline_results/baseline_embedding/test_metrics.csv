@@ -1,0 +1,2 @@
+split,accuracy,macro_f1,num_samples
+test,0.5324650450105344,0.5288767050607339,5221

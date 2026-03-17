@@ -1,0 +1,15 @@
+{
+    "task_type": "5_class",
+    "use_regression": false,
+    "model_name": "bert-base-uncased",
+    "max_length": 128,
+    "learning_rate": 1e-05,
+    "num_epochs": 4,
+    "batch_size": 16,
+    "grad_accum_steps": 1,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "lr_scheduler_type": "cosine",
+    "fp16": true,
+    "seed": 42
+}

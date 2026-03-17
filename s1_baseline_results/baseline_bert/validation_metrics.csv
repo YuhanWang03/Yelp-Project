@@ -1,0 +1,2 @@
+split,accuracy,macro_f1,num_samples
+validation,0.6191044776119403,0.6196249150951949,5025

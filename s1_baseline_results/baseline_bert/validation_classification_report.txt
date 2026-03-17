@@ -1,0 +1,11 @@
+              precision    recall  f1-score   support
+
+      1 Star       0.76      0.73      0.74      1081
+     2 Stars       0.55      0.57      0.56      1025
+     3 Stars       0.56      0.53      0.54      1033
+     4 Stars       0.54      0.57      0.56       975
+     5 Stars       0.69      0.71      0.70       911
+
+    accuracy                           0.62      5025
+   macro avg       0.62      0.62      0.62      5025
+weighted avg       0.62      0.62      0.62      5025

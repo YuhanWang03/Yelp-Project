@@ -1,0 +1,6 @@
+{
+  "split": "validation",
+  "accuracy": 0.5607960199004975,
+  "macro_f1": 0.5559540710049026,
+  "num_samples": 5025
+}

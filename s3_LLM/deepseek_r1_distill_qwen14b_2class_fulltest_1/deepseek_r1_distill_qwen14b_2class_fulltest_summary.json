@@ -1,0 +1,55 @@
+{
+  "Run_ID": "deepseek_r1_distill_qwen14b_2class_fulltest",
+  "Task_Type": "2_class",
+  "Mode": "Prompt_Inference",
+  "Model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+  "Batch_Size": 16,
+  "Accuracy": 0.8004131164471986,
+  "Macro_F1": 0.7942937651441315,
+  "Valid_Prediction_Rate": 0.9368650217706821,
+  "Strict_Format_Rate": 0.4816158684083212,
+  "Off_By_1_Acc": null,
+  "Adj_Error_Ratio": null,
+  "Mid_Confusion_Ratio": null,
+  "MSE": 0.19958688355280144,
+  "MAE": 0.19958688355280144,
+  "Eval_Time(s)": 750.2308204174042,
+  "Eval_Speed(s/s)": 5.510304145729411,
+  "Confusion_Matrix": [
+    [
+      1216,
+      656
+    ],
+    [
+      117,
+      1884
+    ]
+  ],
+  "Classification_Report": {
+    "0": {
+      "precision": 0.9122280570142536,
+      "recall": 0.6495726495726496,
+      "f1-score": 0.758814352574103,
+      "support": 1872.0
+    },
+    "1": {
+      "precision": 0.7417322834645669,
+      "recall": 0.9415292353823088,
+      "f1-score": 0.8297731777141599,
+      "support": 2001.0
+    },
+    "accuracy": 0.8004131164471986,
+    "macro avg": {
+      "precision": 0.8269801702394102,
+      "recall": 0.7955509424774792,
+      "f1-score": 0.7942937651441315,
+      "support": 3873.0
+    },
+    "weighted avg": {
+      "precision": 0.8241407750950894,
+      "recall": 0.8004131164471986,
+      "f1-score": 0.7954754961592447,
+      "support": 3873.0
+    }
+  }
+}

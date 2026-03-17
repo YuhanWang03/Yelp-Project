@@ -1,0 +1,2 @@
+Run_ID,Task_Type,Mode,Model,Batch_Size,Accuracy,Macro_F1,Valid_Prediction_Rate,Strict_Format_Rate,Off_By_1_Acc,Adj_Error_Ratio,Mid_Confusion_Ratio,MSE,MAE,Eval_Time(s),Eval_Speed(s/s)
+qwen2_5_7b_instruct_5class_fulltest,5_class,Prompt_Inference,Qwen/Qwen2.5-7B-Instruct,64,0.6736257421949818,0.6691404928239146,1.0,1.0,0.9850603332694886,0.954225352112676,0.13464853476345529,0.3842175828385367,0.3436123348017621,49.79095196723938,104.85840888190342
