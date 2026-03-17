@@ -281,8 +281,3 @@ If you are browsing this repository for the first time, the most natural order i
 - Paths in shell scripts may need to be updated for your local machine or cloud environment.
 - If you do not include raw Yelp data in the repository, add a short note in `data/` describing how to obtain and preprocess it.
 
----
-
-## License
-
-Add your preferred license here if you plan to make the repository public.
