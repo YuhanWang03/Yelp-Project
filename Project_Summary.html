@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Summary — Yelp Review Analysis</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+    padding: 0;
+  }
+
+  /* ── Page layout ── */
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 56px;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    text-align: center;
+    padding: 60px 0 48px;
+    border-bottom: 3px solid #c0392b;
+    margin-bottom: 40px;
+  }
+  .cover .course { font-size: 10pt; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .cover h1 { font-size: 22pt; font-weight: 700; color: #1a1a1a; line-height: 1.3; margin-bottom: 16px; }
+  .cover .subtitle { font-size: 12pt; color: #555; margin-bottom: 28px; }
+  .cover .meta { font-size: 10pt; color: #888; }
+
+  /* ── Section headings ── */
+  h2 {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #c0392b;
+    margin: 36px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid #f0d0cc;
+  }
+  h3 {
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 20px 0 8px;
+  }
+  h4 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #555;
+    margin: 14px 0 6px;
+  }
+
+  /* ── Pipeline overview ── */
+  .pipeline {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 20px 0 28px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .stage-box {
+    flex: 1;
+    padding: 14px 12px;
+    text-align: center;
+    border-right: 1px solid #e0e0e0;
+  }
+  .stage-box:last-child { border-right: none; }
+  .stage-box .num { font-size: 8pt; font-weight: 700; color: #fff; background: #c0392b; border-radius: 10px; padding: 2px 7px; display: inline-block; margin-bottom: 6px; }
+  .stage-box .title { font-size: 9.5pt; font-weight: 700; color: #2c3e50; margin-bottom: 4px; }
+  .stage-box .desc { font-size: 8.5pt; color: #666; line-height: 1.4; }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px;
+    font-size: 10pt;
+  }
+  th {
+    background: #2c3e50;
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f9f9f9; }
+  .best { font-weight: 700; color: #c0392b; }
+
+  /* ── Text elements ── */
+  p { margin-bottom: 10px; }
+  ul { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 4px; }
+  code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    background: #f4f4f4;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #c0392b;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 8.5pt;
+    background: #eaf4fb;
+    color: #2980b9;
+    border: 1px solid #aad4ec;
+    border-radius: 4px;
+    padding: 1px 7px;
+    margin: 2px 3px 2px 0;
+  }
+  .highlight-box {
+    background: #fdf6f5;
+    border-left: 4px solid #c0392b;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .highlight-box p { margin: 0; font-size: 10pt; }
+
+  .finding-box {
+    background: #f0f8ff;
+    border: 1px solid #bde;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 12px 0;
+  }
+  .finding-box p { margin: 0 0 6px; font-size: 10pt; }
+  .finding-box p:last-child { margin: 0; }
+
+  /* ── Architecture diagram ── */
+  .arch {
+    display: flex;
+    gap: 16px;
+    margin: 14px 0 20px;
+  }
+  .arch-col {
+    flex: 1;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .arch-header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 10pt;
+    font-weight: 700;
+  }
+  .arch-body {
+    padding: 10px 12px;
+    font-size: 9.5pt;
+  }
+  .arch-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+  }
+  .arch-step:last-child { border-bottom: none; }
+  .arch-arrow { color: #c0392b; font-weight: 700; font-size: 12pt; }
+  .arch-step span { flex: 1; }
+
+  /* ── Print — single continuous page ── */
+  @page {
+    size: 210mm 2600mm;
+    margin: 0;
+  }
+  @media print {
+    body { padding: 0; }
+    .page { padding: 32px 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="course">CSE4601 · Text Mining · Project Report</div>
+    <h1>Yelp Review Analysis:<br>From Baselines to Business Intelligence Agent</h1>
+    <div class="subtitle">A four-stage NLP pipeline progressing from feature engineering to agentic RAG systems</div>
+    <div class="meta">GitHub: github.com/YuhanWang03/Yelp-Project</div>
+  </div>
+
+  <!-- Overview -->
+  <h2>Project Overview</h2>
+  <p>
+    This project applies a progressive four-stage NLP pipeline to the Yelp Academic Dataset (50,000 reviews).
+    Each stage builds on the previous, exploring how performance and capability evolve as methods advance
+    from traditional feature engineering to a fully agentic retrieval-augmented system.
+  </p>
+
+  <div class="pipeline">
+    <div class="stage-box">
+      <div class="num">Stage 1</div>
+      <div class="title">Baseline Comparison</div>
+      <div class="desc">TF-IDF, Sentence-BERT embeddings, BERT fine-tuning</div>
+    </div>
+    <div class="stage-box">
+      <div class="num">Stage 2</div>
+      <div class="title">BERT Fine-Tuning</div>
+      <div class="desc">216 experiments across 3 backbones, 3 tasks, multiple hyperparameters</div>
+    </div>
+    <div class="stage-box">
+      <div class="num">Stage 3</div>
+      <div class="title">LLM Evaluation</div>
+      <div class="desc">Zero-shot → Few-shot → LoRA fine-tuning with Qwen &amp; DeepSeek</div>
+    </div>
+    <div class="stage-box">
+      <div class="num">Stage 4</div>
+      <div class="title">BI Agent</div>
+      <div class="desc">RAG + LangGraph ReAct agent with three-way benchmark evaluation</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Key progression:</strong> Feature engineering → Fixed pretrained representations → End-to-end transformer fine-tuning → Direct LLM prompting → Agentic retrieval-augmented systems</p>
+  </div>
+
+  <!-- Stage 1 -->
+  <h2>Stage 1 — Baseline Comparison</h2>
+  <p>Three modeling paradigms are compared on the 5-class star rating prediction task (test set).</p>
+
+  <table>
+    <tr><th>Model</th><th>Accuracy</th><th>Macro F1</th></tr>
+    <tr><td>TF-IDF + Logistic Regression</td><td>56.92%</td><td>56.56%</td></tr>
+    <tr><td>Sentence-BERT + Logistic Regression</td><td>53.25%</td><td>52.89%</td></tr>
+    <tr><td class="best">BERT (fine-tuned)</td><td class="best">62.50%</td><td class="best">62.50%</td></tr>
+  </table>
+
+  <div class="finding-box">
+    <p><strong>Why does fine-tuned BERT win?</strong> End-to-end training jointly optimises the
+    text representation and the classification head for the exact task, allowing every layer to
+    specialise. Frozen representations are fixed at inference time, so any mismatch between
+    the pre-training objective and star-rating classification cannot be corrected.</p>
+    <p><strong>Why does Sentence-BERT underperform TF-IDF?</strong> Sentence-BERT embeddings are
+    optimised for semantic similarity between sentence pairs, not for single-sentence classification.
+    Star ratings are strongly driven by specific sentiment vocabulary ("terrible", "amazing",
+    "overpriced") — patterns that TF-IDF's word-frequency statistics capture directly, whereas
+    Sentence-BERT compresses them into a dense vector designed for a different purpose.</p>
+  </div>
+
+  <!-- Stage 2 -->
+  <h2>Stage 2 — BERT Fine-Tuning Experiments</h2>
+  <p>A systematic hyperparameter search across <strong>216 configurations</strong> covers all
+  combinations of the following dimensions:</p>
+
+  <table>
+    <tr><th>Dimension</th><th>Values</th><th>Count</th></tr>
+    <tr><td>Backbone model</td><td><code>distilbert-base-uncased</code>, <code>bert-base-uncased</code>, <code>roberta-base</code></td><td>3</td></tr>
+    <tr><td>Task setting</td><td>Binary (2-class), 3-class, 5-class</td><td>3</td></tr>
+    <tr><td>Mode</td><td>Classification (cross-entropy), Regression (MSE)</td><td>2</td></tr>
+    <tr><td>Learning rate</td><td>1e-5, 2e-5</td><td>2</td></tr>
+    <tr><td>Batch size</td><td>4, 8, 16</td><td>3</td></tr>
+    <tr><td>Epochs</td><td>3, 4</td><td>2</td></tr>
+    <tr><td colspan="2"><strong>Total combinations: 3 × 3 × 2 × 2 × 3 × 2</strong></td><td><strong>216</strong></td></tr>
+  </table>
+
+  <p>Each run saves validation and test metrics, classification reports, confusion matrices,
+  and prediction files. Due to compute cluster memory constraints, model checkpoints are not
+  saved during Stage 2 — only evaluation outputs are retained. The best 5-class configuration
+  is re-trained and saved in Stage 4 (Step 0).</p>
+
+  <h4>Binary (2-class) — test set</h4>
+  <table>
+    <tr><th>Model</th><th>Best Accuracy</th><th>Best Macro F1</th><th>AUC</th></tr>
+    <tr><td>DistilBERT-base-uncased</td><td>96.54%</td><td>96.53%</td><td>—</td></tr>
+    <tr><td>BERT-base-uncased</td><td>97.07%</td><td>97.06%</td><td>—</td></tr>
+    <tr><td class="best">RoBERTa-base</td><td class="best">97.82%</td><td class="best">97.81%</td><td class="best">0.9968</td></tr>
+  </table>
+
+  <h4>5-class — test set</h4>
+  <table>
+    <tr><th>Model</th><th>Best Accuracy</th><th>Best Macro F1</th><th>Off-by-1 Acc.</th></tr>
+    <tr><td>DistilBERT-base-uncased</td><td>65.43%</td><td>65.36%</td><td>97.35%</td></tr>
+    <tr><td>BERT-base-uncased</td><td>66.75%</td><td>66.36%</td><td>97.49%</td></tr>
+    <tr><td class="best">RoBERTa-base</td><td class="best">68.56%</td><td class="best">68.49%</td><td class="best">98.19%</td></tr>
+  </table>
+
+  <div class="finding-box" style="margin-top:10px">
+    <p><strong>Off-by-1 Accuracy explained:</strong> For star-rating prediction, a prediction is
+    counted as "off-by-1 correct" if it falls within ±1 star of the true label
+    (e.g. predicting 4★ when the true label is 5★ or 3★). This metric captures
+    near-miss predictions that are practically acceptable — a user who rates a
+    restaurant 4★ and a model that predicts 3★ are expressing nearly the same
+    sentiment. The consistently high Off-by-1 Accuracy (≥97% for all models)
+    reflects the inherent difficulty of distinguishing adjacent star ratings,
+    where the linguistic signals in the review text are often ambiguous.</p>
+  </div>
+
+  <div class="finding-box">
+    <p><strong>Why RoBERTa over BERT and DistilBERT?</strong> RoBERTa removes the Next Sentence
+    Prediction task from pre-training, uses dynamic masking, and trains on significantly more data.
+    This produces richer token representations that transfer more effectively to downstream tasks.
+    DistilBERT, while faster, loses expressive capacity through knowledge distillation.</p>
+    <p><strong>Why LR=1e-5 and batch=4?</strong> A smaller learning rate updates the pre-trained
+    weights more gently, reducing catastrophic forgetting of linguistic knowledge. A small batch
+    size introduces noisier gradients that act as implicit regularisation — beneficial when the
+    fine-tuning dataset is moderately sized and overfitting is a risk.</p>
+    <p><strong>Why is 5-class so much harder than binary?</strong> Binary classification separates
+    clearly negative (1–2★) from clearly positive (4–5★) reviews, where sentiment signals are
+    strong. 5-class requires distinguishing adjacent ratings (e.g. 3★ vs 4★), which often share
+    similar vocabulary and tone. The high Off-by-1 Accuracy (≥97%) confirms the model is
+    directionally correct — the bottleneck is the inherent ambiguity between neighbouring star levels.</p>
+  </div>
+
+  <p><strong>Best configuration (5-class):</strong> RoBERTa-base · LR=1e-5 · batch=4 · epochs=4.
+  This checkpoint is reused as the review classifier tool in Stage 4.</p>
+
+  <!-- Stage 3 -->
+  <h2>Stage 3 — LLM Evaluation and Fine-Tuning</h2>
+  <p>Two instruction-tuned LLMs are evaluated on the same rating task through a three-tier progression.</p>
+
+  <div class="arch">
+    <div class="arch-col">
+      <div class="arch-header">Qwen2.5-7B-Instruct</div>
+      <div class="arch-body">
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Tier 1: Zero-shot direct</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Tier 3: LoRA fine-tune (QLoRA / bf16)</span></div>
+      </div>
+    </div>
+    <div class="arch-col">
+      <div class="arch-header">DeepSeek-R1-Distill-Qwen-14B</div>
+      <div class="arch-body">
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Tier 1: Zero-shot direct</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Tier 2: Few-shot improved prompting</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Tier 3: LoRA fine-tune + thinking chains</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Fine-Tuning Details</h3>
+
+  <h4>Qwen2.5-7B-Instruct — two hardware configurations</h4>
+  <table>
+    <tr><th>Parameter</th><th>QLoRA (consumer GPU)</th><th>bf16 (A100 80 GB)</th></tr>
+    <tr><td>Quantisation</td><td>4-bit NF4 + double quant (bfloat16 compute)</td><td>None — full bf16</td></tr>
+    <tr><td>LoRA rank <code>r</code></td><td>16</td><td>32</td></tr>
+    <tr><td>LoRA alpha</td><td>32</td><td>64</td></tr>
+    <tr><td>LoRA dropout</td><td>0.05</td><td>0.05</td></tr>
+    <tr><td>Target modules</td><td colspan="2"><code>q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj</code> (7 modules)</td></tr>
+    <tr><td>Learning rate</td><td>2e-4</td><td>2e-4</td></tr>
+    <tr><td>Epochs</td><td>2</td><td>2</td></tr>
+    <tr><td>Batch size (effective)</td><td>4 × 4 = 16</td><td>8 × 4 = 32</td></tr>
+    <tr><td>LR scheduler</td><td colspan="2">Cosine, warmup ratio 5%</td></tr>
+    <tr><td>Max seq len (train)</td><td colspan="2">256 tokens (inference: 1024)</td></tr>
+    <tr><td>Reported results</td><td>—</td><td>✓ (higher throughput)</td></tr>
+  </table>
+  <p>Both configurations apply LoRA adapters to all 7 projection layers (attention + FFN gate/up/down).
+  Sequence packing is enabled during training to eliminate padding waste. The model is trained
+  with cross-entropy loss; inference uses a separate 1024-token context window to avoid
+  truncating long Yelp reviews.</p>
+
+  <h4>DeepSeek-R1-Distill-Qwen-14B — two-stage fine-tuning pipeline</h4>
+  <p>Fine-tuning a reasoning model requires preserving its chain-of-thought structure.
+  A dedicated two-step pipeline is used:</p>
+
+  <table>
+    <tr><th>Step</th><th>Action</th><th>Output</th></tr>
+    <tr><td>1 — Generate thinking chains</td><td>Run DeepSeek on the training set; extract <code>&lt;think&gt;...&lt;/think&gt;</code> blocks from <em>correctly predicted</em> samples only</td><td>Structured CSV with reasoning chains</td></tr>
+    <tr><td>2 — LoRA fine-tuning (bf16, A100)</td><td>Fine-tune on thinking-chain data with conservative hyperparameters to preserve reasoning ability</td><td>LoRA adapter weights</td></tr>
+  </table>
+
+  <p><strong>LoRA hyperparameters for DeepSeek fine-tuning:</strong></p>
+  <table>
+    <tr><th>Parameter</th><th>Value</th><th>Rationale</th></tr>
+    <tr><td>LoRA rank <code>r</code></td><td>16</td><td>Conservative — smaller rank reduces risk of overwriting reasoning structure</td></tr>
+    <tr><td>LoRA alpha</td><td>32</td><td>Standard 2× ratio</td></tr>
+    <tr><td>Target modules</td><td><code>q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj</code></td><td>Same 7-module coverage as Qwen</td></tr>
+    <tr><td>Learning rate</td><td><strong>5e-5</strong></td><td>4× lower than Qwen — preserves reasoning ability in distilled model</td></tr>
+    <tr><td>Epochs</td><td>2</td><td>—</td></tr>
+    <tr><td>Batch size (effective)</td><td>4 × 4 = 16</td><td>—</td></tr>
+    <tr><td>Max seq len (train)</td><td><strong>1024</strong></td><td>Thinking chains are much longer than plain reviews; 256 would truncate them</td></tr>
+  </table>
+
+  <p>Training format for the assistant turn:</p>
+  <div style="background:#f4f4f4;border-left:3px solid #aaa;padding:10px 14px;margin:8px 0;font-family:'Consolas','Courier New',monospace;font-size:9pt;border-radius:0 4px 4px 0">
+    &lt;think&gt;<br>
+    &nbsp;&nbsp;{model-generated reasoning chain}<br>
+    &lt;/think&gt;<br>
+    Final label: {1 | 2 | 3 | 4 | 5}
+  </div>
+  <p>Only samples where the base model already predicted the correct label are included —
+  incorrect thinking chains are discarded to avoid reinforcing wrong reasoning.</p>
+
+  <h3>DeepSeek Prompt Engineering — Tier 2 Improvement</h3>
+  <p>DeepSeek-R1 requires an intermediate prompting step (Tier 2) that Qwen skips entirely.
+  Zero-shot performance was severely limited by an insufficient token budget and the absence of
+  anchor examples. The following changes raised 5-class accuracy from 55.60% to 61.56%:</p>
+  <table>
+    <tr><th>Setting</th><th>Baseline Prompt</th><th>Improved Prompt</th></tr>
+    <tr><td><code>max_tokens</code></td><td>128</td><td>512</td></tr>
+    <tr><td>Few-shot examples</td><td>None (zero-shot)</td><td>5 examples (one per star level)</td></tr>
+    <tr><td>Reasoning instruction</td><td>Unrestricted</td><td>"Reason briefly (2–3 sentences)"</td></tr>
+    <tr><td>Valid prediction rate</td><td>65.4%</td><td>~99%</td></tr>
+    <tr><td>5-class accuracy</td><td>55.60%</td><td>61.56%</td></tr>
+  </table>
+
+  <p><strong>Baseline prompt</strong> (max_tokens=128, zero-shot):</p>
+  <pre style="border-left:4px solid #e74c3c;padding:10px;background:#fdf2f0;font-size:0.85em">You are a Yelp review rating classifier.
+Analyze the review carefully.
+The label must be one integer from 1 to 5.
+You may reason first, but your LAST line must be exactly:
+Final rating: X
+where X is one of 1, 2, 3, 4, or 5.
+
+Review: {text}</pre>
+
+  <p><strong>Improved prompt</strong> (max_tokens=512, 5-shot examples, brief reasoning):</p>
+  <pre style="border-left:4px solid #27ae60;padding:10px;background:#f0fdf4;font-size:0.85em">You are a Yelp review rating classifier.
+Reason briefly (2-3 sentences), then output your final answer.
+Your LAST line must be exactly: Final rating: X  (X ∈ {1,2,3,4,5})
+
+Here are 5 examples:
+Review: "Absolutely terrible experience..." → Final rating: 1
+Review: "Below average, won't return..."   → Final rating: 2
+Review: "Decent, nothing special..."        → Final rating: 3
+Review: "Really enjoyed it, will be back!" → Final rating: 4
+Review: "Outstanding! Best in the city!"   → Final rating: 5
+
+Review: {text}</pre>
+
+  <div class="finding-box">
+    <p><strong>Why did each change improve accuracy?</strong></p>
+    <ol>
+      <li><strong>max_tokens 128 → 512:</strong> DeepSeek-R1's chain-of-thought alone typically
+      uses 100–300 tokens. With only 128 tokens, ~35% of responses were truncated before the
+      "Final rating:" line ever appeared, causing parse failures. Raising the budget to 512
+      directly recovered those samples.</li>
+      <li><strong>5-shot examples (one per star level):</strong> Zero-shot prompts leave the
+      model uncertain about how each star level maps to review tone. Providing one calibrated
+      example per level anchors the scale and forces consistent output format, reducing both
+      format errors and label bias.</li>
+      <li><strong>"Reason briefly (2–3 sentences)":</strong> Without a length constraint,
+      the reasoning chain can still grow long enough to exhaust 512 tokens before the final
+      answer. Capping reasoning to 2–3 sentences ensures the label always appears within budget.</li>
+    </ol>
+  </div>
+
+  <h4>Binary (2-class) — test set</h4>
+  <table>
+    <tr><th>Model</th><th>Method</th><th>Accuracy</th><th>Macro F1</th></tr>
+    <tr><td>Qwen2.5-7B-Instruct</td><td>Zero-shot</td><td>98.16%</td><td>98.16%</td></tr>
+    <tr><td class="best">Qwen2.5-7B-Instruct</td><td class="best">LoRA fine-tune (bf16)</td><td class="best">98.55%</td><td class="best">98.55%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>Zero-shot</td><td>80.04%</td><td>79.43%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>Few-shot (improved)</td><td>97.33%</td><td>97.33%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>LoRA fine-tune (bf16)</td><td>98.42%</td><td>98.42%</td></tr>
+  </table>
+
+  <h4>5-class — test set</h4>
+  <table>
+    <tr><th>Model</th><th>Method</th><th>Accuracy</th><th>Macro F1</th><th>Off-by-1</th></tr>
+    <tr><td class="best">Qwen2.5-7B-Instruct</td><td class="best">LoRA fine-tune (bf16)</td><td class="best">69.59%</td><td class="best">69.27%</td><td>98.34%</td></tr>
+    <tr><td>Qwen2.5-7B-Instruct</td><td>Zero-shot</td><td>67.36%</td><td>66.91%</td><td>98.51%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>LoRA fine-tune (bf16)</td><td>67.70%</td><td>66.61%</td><td>98.44%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>Few-shot (improved)</td><td>61.56%</td><td>60.90%</td><td>96.99%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>Zero-shot</td><td>55.60%</td><td>54.48%</td><td>89.93%</td></tr>
+  </table>
+
+  <div class="finding-box">
+    <p><strong>Why is Qwen's zero-shot already near fine-tune level?</strong> Qwen2.5-7B-Instruct
+    was pre-trained on a large corpus containing review-like text and instruction-following data.
+    It already understands the relationship between review sentiment and star ratings without
+    task-specific training. The marginal gain from LoRA fine-tuning (+0.39% on binary) reflects
+    task saturation — the model's capability ceiling for this task, not a limitation of fine-tuning.</p>
+    <p><strong>Why did DeepSeek fail at zero-shot?</strong> DeepSeek-R1 is a reasoning model that
+    generates an extended chain-of-thought before producing its final answer. With an insufficient
+    <code>max_tokens</code> budget, the reasoning chain was cut off mid-way, and the model never
+    reached a final label. This is a prompt engineering failure, not a capability failure — after
+    increasing the token budget and adding few-shot examples, 5-class accuracy jumped from 55.6%
+    to 61.6%.</p>
+    <p><strong>Why does LoRA fine-tuning work effectively?</strong> LoRA freezes the base model
+    weights and learns only small low-rank update matrices, preserving pre-trained language knowledge
+    while adapting the output format. For strong base models, LoRA primarily achieves
+    <em>format alignment</em> (e.g. outputting a single digit instead of a sentence) rather than
+    fundamental capability improvement, which is why the accuracy gains are modest but consistent.</p>
+    <p><strong>Why use thinking-chain data for DeepSeek fine-tuning?</strong> Directly fine-tuning
+    DeepSeek on (input → label) pairs would suppress its chain-of-thought structure, degrading its
+    reasoning ability. By generating thinking chains from correct predictions first and training on
+    (input → &lt;think&gt;...&lt;/think&gt; + label), the model retains its reasoning capability
+    while learning the correct output format.</p>
+  </div>
+
+  <!-- Stage 4 -->
+  <h2>Stage 4 — Business Intelligence Agent</h2>
+  <p>Stage 4 shifts from classification to open-ended question answering over Yelp review data.
+  A two-layer system is built and evaluated against a no-retrieval LLM baseline.</p>
+
+  <h3>System Architecture</h3>
+  <div class="arch">
+    <div class="arch-col">
+      <div class="arch-header">Layer 1 — RAG Baseline (fixed flow)</div>
+      <div class="arch-body">
+        <div class="arch-step"><div class="arch-arrow">1</div><span><code>get_business_stats</code></span></div>
+        <div class="arch-step"><div class="arch-arrow">2</div><span><code>search_by_business</code> / <code>search_global</code></span></div>
+        <div class="arch-step"><div class="arch-arrow">3</div><span><code>summarize_evidence</code> → structured answer</span></div>
+      </div>
+    </div>
+    <div class="arch-col">
+      <div class="arch-header">Layer 2 — Full Agent (LangGraph ReAct)</div>
+      <div class="arch-body">
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Qwen2.5-7B decides which tools to call</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Iterates: Think → Tool Call → Observe</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Produces final answer with reasoning trace</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:12px">The ReAct loop inside the Full Agent runs until the model decides
+  no further tool calls are needed:</p>
+
+  <div style="margin:14px 0;font-family:sans-serif;font-size:0.88em">
+    <!-- User query -->
+    <div style="text-align:center;margin-bottom:6px">
+      <span style="background:#2c3e50;color:#fff;padding:6px 24px;border-radius:20px;font-weight:bold;letter-spacing:0.03em">User Query</span>
+    </div>
+    <div style="text-align:center;color:#7f8c8d;font-size:1.1em;margin-bottom:8px">↓</div>
+    <!-- Two columns -->
+    <div style="display:flex;gap:16px;align-items:flex-start">
+
+      <!-- Layer 1 -->
+      <div style="flex:1;border:2px solid #2471a3;border-radius:8px;overflow:hidden">
+        <div style="background:#2471a3;color:#fff;padding:8px 12px;text-align:center">
+          <div style="font-weight:bold">Layer 1 — RAG Baseline</div>
+          <div style="font-size:0.83em;opacity:0.88;margin-top:2px">Fixed Pipeline</div>
+        </div>
+        <div style="padding:12px 14px;background:#eaf4fc">
+          <div style="background:#fff;border:1px solid #aed6f1;border-radius:5px;padding:7px 10px;text-align:center;margin-bottom:5px"><code>get_business_stats</code></div>
+          <div style="text-align:center;color:#2471a3;margin:3px 0">↓</div>
+          <div style="background:#fff;border:1px solid #aed6f1;border-radius:5px;padding:7px 10px;text-align:center;margin-bottom:5px"><code>search_by_business</code> / <code>search_global</code></div>
+          <div style="text-align:center;color:#2471a3;margin:3px 0">↓</div>
+          <div style="background:#fff;border:1px solid #aed6f1;border-radius:5px;padding:7px 10px;text-align:center;margin-bottom:8px"><code>summarize_evidence</code></div>
+          <div style="text-align:center;color:#2471a3;margin:3px 0">↓</div>
+          <div style="background:#2471a3;color:#fff;border-radius:5px;padding:7px 10px;text-align:center;font-weight:bold">Structured Answer</div>
+        </div>
+      </div>
+
+      <!-- Layer 2 -->
+      <div style="flex:1;border:2px solid #7d3c98;border-radius:8px;overflow:hidden">
+        <div style="background:#7d3c98;color:#fff;padding:8px 12px;text-align:center">
+          <div style="font-weight:bold">Layer 2 — Full Agent</div>
+          <div style="font-size:0.83em;opacity:0.88;margin-top:2px">LangGraph ReAct</div>
+        </div>
+        <div style="padding:12px 14px;background:#f5eef8">
+          <div style="background:#7d3c98;color:#fff;border-radius:5px;padding:6px 10px;text-align:center;font-weight:bold;margin-bottom:10px">Qwen2.5-7B (via Ollama)</div>
+          <!-- ReAct loop box -->
+          <div style="border:2px dashed #a569bd;border-radius:7px;padding:10px 12px 8px;background:#fff;position:relative;margin-bottom:8px">
+            <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#f5eef8;padding:0 8px;font-size:0.8em;color:#7d3c98;font-weight:bold">↺ ReAct Loop</div>
+            <div style="background:#d7bde2;border-radius:4px;padding:6px 10px;text-align:center;margin-bottom:5px">① Decide which tool to call</div>
+            <div style="text-align:center;color:#7d3c98;margin:2px 0">↓</div>
+            <div style="background:#d7bde2;border-radius:4px;padding:6px 10px;text-align:center;margin-bottom:5px">② Call tool</div>
+            <div style="text-align:center;color:#7d3c98;margin:2px 0">↓</div>
+            <div style="background:#d7bde2;border-radius:4px;padding:6px 10px;text-align:center">③ Observe result</div>
+            <div style="text-align:center;font-size:0.8em;color:#7d3c98;margin-top:6px">repeat until no more tool calls needed</div>
+          </div>
+          <div style="text-align:center;color:#7d3c98;margin:3px 0">↓</div>
+          <div style="background:#7d3c98;color:#fff;border-radius:5px;padding:7px 10px;text-align:center;font-weight:bold">Final Answer + Reasoning Trace</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <h3>Technical Stack</h3>
+  <div style="margin-bottom:14px">
+    <span class="tag">LangGraph create_react_agent</span>
+    <span class="tag">Qwen2.5-7B via Ollama</span>
+    <span class="tag">FAISS IndexFlatIP</span>
+    <span class="tag">all-MiniLM-L6-v2</span>
+    <span class="tag">RoBERTa-base classifier</span>
+    <span class="tag">LangChain + langchain-ollama</span>
+    <span class="tag">Gradio 5</span>
+  </div>
+
+  <h3>Vector Knowledge Base</h3>
+  <ul>
+    <li>50,000 Yelp reviews → <strong>60,823 review chunks</strong> (sentence-split, ≤180 words each)</li>
+    <li>Encoded with <code>all-MiniLM-L6-v2</code> (384-dim, L2-normalised → cosine similarity via inner product)</li>
+    <li>FAISS <code>IndexFlatIP</code> for exact nearest-neighbour search</li>
+    <li>Business-filtered retrieval: subset matrix multiply on <code>business_to_indices</code> map (avoids result dilution for small businesses)</li>
+  </ul>
+
+  <h3>Evaluation Setup</h3>
+  <p>20 questions × 4 types × 3 systems = 60 evaluated responses.
+  Human scored on 5 dimensions (0–2 scale, max 10 points).</p>
+
+  <table>
+    <tr><th>Question Type</th><th>Example Question</th></tr>
+    <tr><td>Complaint Mining</td><td>"What do customers complain about most at this business?"</td></tr>
+    <tr><td>Aspect Analysis</td><td>"What aspects do customers praise and criticise about food and service?"</td></tr>
+    <tr><td>Business Profiling</td><td>"Give me an overall profile of this business based on customer reviews."</td></tr>
+    <tr><td>Cross-Business Pattern</td><td>"Do Yelp reviews show any patterns between wait time and star ratings?"</td></tr>
+  </table>
+
+  <h3>Evaluation Results</h3>
+  <table>
+    <tr><th>System</th><th>Correctness</th><th>Evidence</th><th>Groundedness</th><th>Tool Use</th><th>Efficiency</th><th>Total /10</th></tr>
+    <tr><td>Direct LLM</td><td>0.25</td><td>0.00</td><td>0.00</td><td>0.00</td><td>1.70</td><td>1.95</td></tr>
+    <tr><td class="best">RAG Baseline</td><td class="best">0.95</td><td class="best">1.60</td><td class="best">1.75</td><td>0.95</td><td>1.65</td><td class="best">6.90</td></tr>
+    <tr><td>Full Agent</td><td>1.05</td><td>1.15</td><td>1.15</td><td class="best">1.30</td><td>0.10</td><td>4.75</td></tr>
+  </table>
+
+  <table>
+    <tr><th>System</th><th>Hallucination Rate</th><th>Avg Response Time</th></tr>
+    <tr><td>Direct LLM</td><td>100%</td><td>~9s</td></tr>
+    <tr><td>Full Agent</td><td>25%</td><td>~45s</td></tr>
+    <tr><td class="best">RAG Baseline</td><td class="best">5%</td><td>~9s</td></tr>
+  </table>
+
+  <div class="finding-box">
+    <p><strong>RAG Baseline (6.90/10):</strong> Fixed tool sequencing provides stable, well-grounded answers with rich evidence citation. Hallucination rate of only 5% demonstrates the effectiveness of retrieval augmentation over direct generation.</p>
+    <p><strong>Full Agent (4.75/10):</strong> Scores highest on correctness for complex question types (Aspect Analysis, Cross-Business Pattern) where autonomous tool selection adds value. However, 7B model instability under ReAct prompting leads to 25% hallucination and poor efficiency.</p>
+    <p><strong>Direct LLM (1.95/10):</strong> Cannot access review data, resulting in generic responses with 100% hallucination rate. Confirms that retrieval augmentation is essential for business-specific QA.</p>
+  </div>
+
+  <!-- Cross-stage summary -->
+  <h2>Cross-Stage Performance Summary</h2>
+  <table>
+    <tr><th>Stage</th><th>Best Method</th><th>Task</th><th>Key Metric</th></tr>
+    <tr><td>Stage 1</td><td>BERT fine-tuned</td><td>5-class</td><td>Accuracy 62.50%</td></tr>
+    <tr><td>Stage 2</td><td>RoBERTa-base (LR=1e-5, ep=4)</td><td>5-class</td><td>Accuracy 68.56%</td></tr>
+    <tr><td>Stage 3</td><td>Qwen2.5-7B LoRA bf16</td><td>5-class</td><td>Accuracy 69.59%</td></tr>
+    <tr><td>Stage 4</td><td>RAG Baseline</td><td>Open-ended QA</td><td>Score 6.90/10, Hallucination 5%</td></tr>
+  </table>
+
+  <p>The classification accuracy ceiling reflects the inherent ambiguity in star-rating prediction
+  (adjacent stars are semantically similar), as evidenced by the consistently high Off-by-1 accuracy
+  (≥97%) across all Stage 2 and Stage 3 models. Stage 4 reframes the problem as open-ended
+  business intelligence, where retrieval augmentation and structured tool use provide the
+  largest qualitative leap.</p>
+
+  <!-- Portfolio highlights -->
+  <h2>Portfolio Highlights</h2>
+  <ul>
+    <li><strong>RAG pipeline design:</strong> chunk-level FAISS indexing, business-filtered pre-retrieval, evidence-grounded synthesis</li>
+    <li><strong>LangGraph agent implementation:</strong> ReAct loop, tool binding with <code>create_react_agent</code>, message trace extraction</li>
+    <li><strong>Tool design for small LLMs:</strong> decomposing retrieval scope into two focused tools improves 7B model reliability under ReAct prompting</li>
+    <li><strong>Structured evaluation:</strong> rubric design across 5 dimensions, three-way system comparison, hallucination rate quantification</li>
+    <li><strong>Production-readiness patterns:</strong> crash-resume eval runner, multi-layer JSON parsing, centralised config management</li>
+    <li><strong>Interactive demo:</strong> Gradio 5 app with 160-business searchable dropdown, live tool call logs, and side-by-side evidence display</li>
+    <li><strong>Systematic ML experimentation:</strong> 216-run hyperparameter sweep with automated logging and result aggregation (Stage 2)</li>
+  </ul>
+
+  <div style="margin-top:40px; padding-top:16px; border-top:1px solid #ddd; font-size:9pt; color:#aaa; text-align:center;">
+    CSE4601 Text Mining Project &nbsp;·&nbsp; github.com/YuhanWang03/Yelp-Project
+  </div>
+
+</div>
+</body>
+</html>

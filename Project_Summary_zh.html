@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目总结 — Yelp 评论分析</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.7;
+    color: #1a1a1a;
+    background: #fff;
+    padding: 0;
+  }
+
+  /* ── Page layout ── */
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 56px;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    text-align: center;
+    padding: 60px 0 48px;
+    border-bottom: 3px solid #c0392b;
+    margin-bottom: 40px;
+  }
+  .cover .course { font-size: 10pt; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .cover h1 { font-size: 22pt; font-weight: 700; color: #1a1a1a; line-height: 1.3; margin-bottom: 16px; }
+  .cover .subtitle { font-size: 12pt; color: #555; margin-bottom: 28px; }
+  .cover .meta { font-size: 10pt; color: #888; }
+
+  /* ── Section headings ── */
+  h2 {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #c0392b;
+    margin: 36px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid #f0d0cc;
+  }
+  h3 {
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 20px 0 8px;
+  }
+  h4 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #555;
+    margin: 14px 0 6px;
+  }
+
+  /* ── Pipeline overview ── */
+  .pipeline {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 20px 0 28px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .stage-box {
+    flex: 1;
+    padding: 14px 12px;
+    text-align: center;
+    border-right: 1px solid #e0e0e0;
+  }
+  .stage-box:last-child { border-right: none; }
+  .stage-box .num { font-size: 8pt; font-weight: 700; color: #fff; background: #c0392b; border-radius: 10px; padding: 2px 7px; display: inline-block; margin-bottom: 6px; }
+  .stage-box .title { font-size: 9.5pt; font-weight: 700; color: #2c3e50; margin-bottom: 4px; }
+  .stage-box .desc { font-size: 8.5pt; color: #666; line-height: 1.4; }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px;
+    font-size: 10pt;
+  }
+  th {
+    background: #2c3e50;
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f9f9f9; }
+  .best { font-weight: 700; color: #c0392b; }
+
+  /* ── Text elements ── */
+  p { margin-bottom: 10px; }
+  ul { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 4px; }
+  code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    background: #f4f4f4;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #c0392b;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 8.5pt;
+    background: #eaf4fb;
+    color: #2980b9;
+    border: 1px solid #aad4ec;
+    border-radius: 4px;
+    padding: 1px 7px;
+    margin: 2px 3px 2px 0;
+  }
+  .highlight-box {
+    background: #fdf6f5;
+    border-left: 4px solid #c0392b;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .highlight-box p { margin: 0; font-size: 10pt; }
+
+  .finding-box {
+    background: #f0f8ff;
+    border: 1px solid #bde;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 12px 0;
+  }
+  .finding-box p { margin: 0 0 6px; font-size: 10pt; }
+  .finding-box p:last-child { margin: 0; }
+
+  /* ── Architecture diagram ── */
+  .arch {
+    display: flex;
+    gap: 16px;
+    margin: 14px 0 20px;
+  }
+  .arch-col {
+    flex: 1;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .arch-header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 10pt;
+    font-weight: 700;
+  }
+  .arch-body {
+    padding: 10px 12px;
+    font-size: 9.5pt;
+  }
+  .arch-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+  }
+  .arch-step:last-child { border-bottom: none; }
+  .arch-arrow { color: #c0392b; font-weight: 700; font-size: 12pt; }
+  .arch-step span { flex: 1; }
+
+  /* ── Print — single continuous page ── */
+  @page {
+    size: 210mm 2500mm;
+    margin: 0;
+  }
+  @media print {
+    body { padding: 0; }
+    .page { padding: 32px 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 封面 -->
+  <div class="cover">
+    <div class="course">CSE4601 · 文本挖掘 · 项目报告</div>
+    <h1>Yelp 评论分析：<br>从 Baseline 到商业智能 Agent</h1>
+    <div class="subtitle">一个四阶段 NLP 流水线，从特征工程演进至 Agentic RAG 系统</div>
+    <div class="meta">GitHub: github.com/YuhanWang03/Yelp-Project</div>
+  </div>
+
+  <!-- 项目概览 -->
+  <h2>项目概览</h2>
+  <p>
+    本项目对 Yelp 学术数据集（5 万条评论）构建了一个四阶段递进式 NLP 实验流水线。
+    每一阶段在前一阶段的基础上延伸，系统观察当方法从传统特征工程逐步演进至具备自主推理能力的
+    检索增强 Agent 时，模型性能与能力的变化规律。
+  </p>
+
+  <div class="pipeline">
+    <div class="stage-box">
+      <div class="num">第一阶段</div>
+      <div class="title">Baseline 对比</div>
+      <div class="desc">TF-IDF、Sentence-BERT 冻结嵌入、BERT 微调</div>
+    </div>
+    <div class="stage-box">
+      <div class="num">第二阶段</div>
+      <div class="title">BERT 微调</div>
+      <div class="desc">216 组实验，覆盖 3 种 backbone、3 种任务、多组超参数</div>
+    </div>
+    <div class="stage-box">
+      <div class="num">第三阶段</div>
+      <div class="title">大模型评测</div>
+      <div class="desc">零样本 → Few-shot → LoRA 微调（Qwen 与 DeepSeek）</div>
+    </div>
+    <div class="stage-box">
+      <div class="num">第四阶段</div>
+      <div class="title">商业智能 Agent</div>
+      <div class="desc">RAG + LangGraph ReAct Agent，三方基准测试评估</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>核心演进路径：</strong>特征工程 → 固定预训练语义表示 → 端到端 Transformer 微调 → 大模型直接提示推理 → Agentic 检索增强系统</p>
+  </div>
+
+  <!-- 第一阶段 -->
+  <h2>第一阶段 — Baseline 对比</h2>
+  <p>在 5 分类星级预测任务上，对三种建模范式进行对比（测试集结果）。</p>
+
+  <table>
+    <tr><th>模型</th><th>Accuracy</th><th>Macro F1</th></tr>
+    <tr><td>TF-IDF + Logistic Regression</td><td>56.92%</td><td>56.56%</td></tr>
+    <tr><td>Sentence-BERT + Logistic Regression</td><td>53.25%</td><td>52.89%</td></tr>
+    <tr><td class="best">BERT（微调）</td><td class="best">62.50%</td><td class="best">62.50%</td></tr>
+  </table>
+
+  <div class="finding-box">
+    <p><strong>为什么微调 BERT 效果最好？</strong>端到端训练让文本表示层和分类头针对具体任务联合优化，每一层的参数都可以根据星级预测目标进行调整。固定表示在推理时是不可变的，预训练目标与星级分类之间的不匹配无法被弥补。</p>
+    <p><strong>为什么 Sentence-BERT 反而不如 TF-IDF？</strong>Sentence-BERT 的嵌入是为句子对语义相似度任务设计的，而非单句分类。星级评分与特定情感词汇（"terrible"、"amazing"、"overpriced"）高度相关，TF-IDF 的词频统计能直接捕捉这类信号；而 Sentence-BERT 将其压缩为一个为其他目的设计的稠密向量，反而损失了关键的判别信息。</p>
+  </div>
+
+  <!-- 第二阶段 -->
+  <h2>第二阶段 — BERT 微调实验</h2>
+  <p>在以下所有维度的参数组合下，共完成 <strong>216 组</strong>系统化超参数搜索实验：</p>
+
+  <table>
+    <tr><th>维度</th><th>搜索范围</th><th>数量</th></tr>
+    <tr><td>Backbone 模型</td><td><code>distilbert-base-uncased</code>、<code>bert-base-uncased</code>、<code>roberta-base</code></td><td>3</td></tr>
+    <tr><td>任务设定</td><td>二分类（2-class）、3 分类、5 分类</td><td>3</td></tr>
+    <tr><td>训练模式</td><td>Classification（交叉熵）、Regression（MSE）</td><td>2</td></tr>
+    <tr><td>学习率</td><td>1e-5、2e-5</td><td>2</td></tr>
+    <tr><td>Batch size</td><td>4、8、16</td><td>3</td></tr>
+    <tr><td>训练轮数（Epochs）</td><td>3、4</td><td>2</td></tr>
+    <tr><td colspan="2"><strong>总组合数：3 × 3 × 2 × 2 × 3 × 2</strong></td><td><strong>216</strong></td></tr>
+  </table>
+
+  <p>每组实验自动保存 validation 和 test 的指标、classification report、confusion matrix 及
+  prediction 文件。由于算力集群内存限制，第二阶段不保存模型 checkpoint，仅保留评测输出结果。
+  最优 5 分类配置在第四阶段 Step 0 中重新训练并保存为可加载的 checkpoint。</p>
+
+  <h4>二分类 — 测试集</h4>
+  <table>
+    <tr><th>模型</th><th>最优 Accuracy</th><th>最优 Macro F1</th><th>AUC</th></tr>
+    <tr><td>DistilBERT-base-uncased</td><td>96.54%</td><td>96.53%</td><td>—</td></tr>
+    <tr><td>BERT-base-uncased</td><td>97.07%</td><td>97.06%</td><td>—</td></tr>
+    <tr><td class="best">RoBERTa-base</td><td class="best">97.82%</td><td class="best">97.81%</td><td class="best">0.9968</td></tr>
+  </table>
+
+  <h4>5 分类 — 测试集</h4>
+  <table>
+    <tr><th>模型</th><th>最优 Accuracy</th><th>最优 Macro F1</th><th>Off-by-1 准确率</th></tr>
+    <tr><td>DistilBERT-base-uncased</td><td>65.43%</td><td>65.36%</td><td>97.35%</td></tr>
+    <tr><td>BERT-base-uncased</td><td>66.75%</td><td>66.36%</td><td>97.49%</td></tr>
+    <tr><td class="best">RoBERTa-base</td><td class="best">68.56%</td><td class="best">68.49%</td><td class="best">98.19%</td></tr>
+  </table>
+
+  <div class="finding-box" style="margin-top:10px">
+    <p><strong>Off-by-1 准确率（容差精度）说明：</strong>在星级评分预测任务中，若模型预测的星级与真实标签相差不超过 1 星（例如真实为 5★，预测为 4★ 或 3★ 均不算作 Off-by-1 错误），则视为"容差正确"。
+    这一指标捕捉了实际可接受的近似预测——将 4★ 商家预测为 3★ 与预测为 1★ 在实际意义上有本质区别。
+    所有模型的 Off-by-1 准确率均高达 97% 以上，这反映了相邻星级之间的语言信号本身存在模糊性，
+    是评分预测任务的固有难点，而非模型能力的不足。</p>
+  </div>
+
+  <div class="finding-box">
+    <p><strong>为什么 RoBERTa 优于 BERT 和 DistilBERT？</strong>RoBERTa 在预训练时去掉了 NSP（下句预测）任务，采用动态 Masking 策略，并使用了更大规模的数据进行训练，生成的词表示更加鲁棒，迁移到下游任务时具有更好的起点。DistilBERT 虽然推理更快，但蒸馏过程中不可避免地损失了部分表达能力。</p>
+    <p><strong>为什么 LR=1e-5 和 batch=4 效果最好？</strong>较小的学习率让预训练权重得到更温和的更新，减少灾难性遗忘（catastrophic forgetting），避免破坏模型在预训练阶段习得的语言知识。小 batch size 引入更多噪声梯度，相当于一种隐式正则化，在数据量适中的微调场景下有助于提升泛化能力、降低过拟合风险。</p>
+    <p><strong>为什么 5 分类比二分类难得多？</strong>二分类只需区分明显的负面（1–2★）和正面（4–5★）评论，情感信号清晰。5 分类则需要区分相邻星级（如 3★ vs 4★），这两类评论在词汇和语气上高度相似。Off-by-1 准确率高达 97% 以上说明模型"方向正确"——真正的瓶颈是相邻等级之间的语义模糊性，这是该任务的固有难点。</p>
+  </div>
+
+  <p><strong>最优配置（5 分类）：</strong>RoBERTa-base · LR=1e-5 · batch=4 · epochs=4。
+  该 checkpoint 在第四阶段中被复用为评论分类器工具。</p>
+
+  <!-- 第三阶段 -->
+  <h2>第三阶段 — 大语言模型评测与微调</h2>
+  <p>对两个指令微调大语言模型，在同一评分预测任务上进行三层递进评测。</p>
+
+  <div class="arch">
+    <div class="arch-col">
+      <div class="arch-header">Qwen2.5-7B-Instruct</div>
+      <div class="arch-body">
+        <div class="arch-step"><div class="arch-arrow">→</div><span>第一层：零样本直接推理</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>第三层：LoRA 微调（QLoRA / bf16）</span></div>
+      </div>
+    </div>
+    <div class="arch-col">
+      <div class="arch-header">DeepSeek-R1-Distill-Qwen-14B</div>
+      <div class="arch-body">
+        <div class="arch-step"><div class="arch-arrow">→</div><span>第一层：零样本直接推理</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>第二层：改进提示词（Few-shot）</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>第三层：LoRA 微调 + 思维链训练数据</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>微调方案详情</h3>
+
+  <h4>Qwen2.5-7B-Instruct — 两种硬件配置</h4>
+  <table>
+    <tr><th>参数</th><th>QLoRA（消费级 GPU）</th><th>bf16（A100 80 GB）</th></tr>
+    <tr><td>量化</td><td>4-bit NF4 + 双重量化（bfloat16 计算）</td><td>无 — 全精度 bf16</td></tr>
+    <tr><td>LoRA 秩 <code>r</code></td><td>16</td><td>32</td></tr>
+    <tr><td>LoRA alpha</td><td>32</td><td>64</td></tr>
+    <tr><td>LoRA dropout</td><td>0.05</td><td>0.05</td></tr>
+    <tr><td>目标模块</td><td colspan="2"><code>q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj</code>（共 7 个模块）</td></tr>
+    <tr><td>学习率</td><td>2e-4</td><td>2e-4</td></tr>
+    <tr><td>训练轮数</td><td>2</td><td>2</td></tr>
+    <tr><td>有效批大小</td><td>4 × 4 = 16</td><td>8 × 4 = 32</td></tr>
+    <tr><td>学习率调度</td><td colspan="2">Cosine，warmup ratio 5%</td></tr>
+    <tr><td>训练序列长度</td><td colspan="2">256 tokens（推理：1024）</td></tr>
+    <tr><td>报告结果使用</td><td>—</td><td>✓（吞吐量更高）</td></tr>
+  </table>
+  <p>两种配置均将 LoRA 适配器施加于全部 7 个投影层（注意力 + FFN 的 gate/up/down 层）。
+  训练时启用序列打包（sequence packing）以消除填充浪费。推理时使用独立的 1024-token 上下文窗口，
+  避免截断较长的 Yelp 评论。</p>
+
+  <h4>DeepSeek-R1-Distill-Qwen-14B — 两阶段微调流程</h4>
+  <p>微调推理模型需要保留其思维链结构，因此采用专门的两步流程：</p>
+
+  <table>
+    <tr><th>步骤</th><th>操作</th><th>输出</th></tr>
+    <tr><td>第一步 — 生成思维链</td><td>在训练集上运行 DeepSeek，仅提取<em>预测正确</em>的样本中的 <code>&lt;think&gt;...&lt;/think&gt;</code> 推理块</td><td>包含推理链的结构化 CSV 文件</td></tr>
+    <tr><td>第二步 — LoRA 微调（bf16，A100）</td><td>使用保守超参数在思维链数据上微调，保留推理能力</td><td>LoRA 适配器权重</td></tr>
+  </table>
+
+  <p><strong>DeepSeek 微调 LoRA 超参数：</strong></p>
+  <table>
+    <tr><th>参数</th><th>值</th><th>设计理由</th></tr>
+    <tr><td>LoRA 秩 <code>r</code></td><td>16</td><td>保守设置 — 较小的秩降低覆盖推理结构的风险</td></tr>
+    <tr><td>LoRA alpha</td><td>32</td><td>标准 2× 比例</td></tr>
+    <tr><td>目标模块</td><td><code>q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj</code></td><td>与 Qwen 相同的 7 个模块</td></tr>
+    <tr><td>学习率</td><td><strong>5e-5</strong></td><td>比 Qwen 低 4 倍 — 防止蒸馏模型的推理能力退化</td></tr>
+    <tr><td>训练轮数</td><td>2</td><td>—</td></tr>
+    <tr><td>有效批大小</td><td>4 × 4 = 16</td><td>—</td></tr>
+    <tr><td>训练序列长度</td><td><strong>1024</strong></td><td>思维链数据远长于普通评论，256 会截断推理链</td></tr>
+  </table>
+
+  <p>Assistant 回复的训练格式：</p>
+  <div style="background:#f4f4f4;border-left:3px solid #aaa;padding:10px 14px;margin:8px 0;font-family:'Consolas','Courier New',monospace;font-size:9pt;border-radius:0 4px 4px 0">
+    &lt;think&gt;<br>
+    &nbsp;&nbsp;{模型生成的推理链}<br>
+    &lt;/think&gt;<br>
+    Final label: {1 | 2 | 3 | 4 | 5}
+  </div>
+  <p>训练数据只包含基础模型已预测正确的样本——推理链错误的样本会被丢弃，避免强化错误的推理路径。</p>
+
+  <h3>DeepSeek 提示词优化 — 第二层改进</h3>
+  <p>DeepSeek-R1 需要一个 Qwen 完全跳过的中间提示词优化步骤（第二层）。零样本性能受限于
+  token 预算不足和缺乏锚定示例。以下改动将 5 分类准确率从 55.60% 提升至 61.56%：</p>
+  <table>
+    <tr><th>参数/设置</th><th>基准提示词</th><th>改进提示词</th></tr>
+    <tr><td><code>max_tokens</code></td><td>128</td><td>512</td></tr>
+    <tr><td>Few-shot 示例</td><td>无（零样本）</td><td>5 条示例（每个星级各一条）</td></tr>
+    <tr><td>推理长度限制</td><td>无限制</td><td>"简要推理（2–3 句话）"</td></tr>
+    <tr><td>有效预测率</td><td>65.4%</td><td>~99%</td></tr>
+    <tr><td>5 分类准确率</td><td>55.60%</td><td>61.56%</td></tr>
+  </table>
+
+  <p><strong>基准提示词</strong>（max_tokens=128，零样本）：</p>
+  <pre style="border-left:4px solid #e74c3c;padding:10px;background:#fdf2f0;font-size:0.85em">You are a Yelp review rating classifier.
+Analyze the review carefully.
+The label must be one integer from 1 to 5.
+You may reason first, but your LAST line must be exactly:
+Final rating: X
+where X is one of 1, 2, 3, 4, or 5.
+
+Review: {text}</pre>
+
+  <p><strong>改进提示词</strong>（max_tokens=512，5-shot 示例，简要推理约束）：</p>
+  <pre style="border-left:4px solid #27ae60;padding:10px;background:#f0fdf4;font-size:0.85em">You are a Yelp review rating classifier.
+Reason briefly (2-3 sentences), then output your final answer.
+Your LAST line must be exactly: Final rating: X  (X ∈ {1,2,3,4,5})
+
+Here are 5 examples:
+Review: "Absolutely terrible experience..." → Final rating: 1
+Review: "Below average, won't return..."   → Final rating: 2
+Review: "Decent, nothing special..."        → Final rating: 3
+Review: "Really enjoyed it, will be back!" → Final rating: 4
+Review: "Outstanding! Best in the city!"   → Final rating: 5
+
+Review: {text}</pre>
+
+  <div class="finding-box">
+    <p><strong>为什么这些改动能提升准确率？</strong></p>
+    <ol>
+      <li><strong>max_tokens 128 → 512：</strong>DeepSeek-R1 的思维链通常需要 100–300 个 token。仅有 128 个 token 时，约 35% 的回复在输出 "Final rating:" 之前就被截断，导致解析失败。将预算提升至 512 直接恢复了这批样本的有效预测。</li>
+      <li><strong>5-shot 示例（每个星级各一条）：</strong>零样本提示下模型对各星级对应的评论语气缺乏锚定，容易出现星级偏移。每个星级提供一条校准示例，帮助模型统一格式并正确区分星级边界，同时减少格式错误。</li>
+      <li><strong>"简要推理（2–3 句话）"约束：</strong>若无长度限制，思维链仍可能占满 512 个 token 而未输出最终标签。限定推理在 2–3 句以内，确保最终答案始终在 token 预算内出现。</li>
+    </ol>
+  </div>
+
+  <h4>二分类 — 测试集</h4>
+  <table>
+    <tr><th>模型</th><th>方法</th><th>Accuracy</th><th>Macro F1</th></tr>
+    <tr><td>Qwen2.5-7B-Instruct</td><td>零样本</td><td>98.16%</td><td>98.16%</td></tr>
+    <tr><td class="best">Qwen2.5-7B-Instruct</td><td class="best">LoRA 微调（bf16）</td><td class="best">98.55%</td><td class="best">98.55%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>零样本</td><td>80.04%</td><td>79.43%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>Few-shot（改进版）</td><td>97.33%</td><td>97.33%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>LoRA 微调（bf16）</td><td>98.42%</td><td>98.42%</td></tr>
+  </table>
+
+  <h4>5 分类 — 测试集</h4>
+  <table>
+    <tr><th>模型</th><th>方法</th><th>Accuracy</th><th>Macro F1</th><th>Off-by-1 准确率</th></tr>
+    <tr><td class="best">Qwen2.5-7B-Instruct</td><td class="best">LoRA 微调（bf16）</td><td class="best">69.59%</td><td class="best">69.27%</td><td>98.34%</td></tr>
+    <tr><td>Qwen2.5-7B-Instruct</td><td>零样本</td><td>67.36%</td><td>66.91%</td><td>98.51%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>LoRA 微调（bf16）</td><td>67.70%</td><td>66.61%</td><td>98.44%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>Few-shot（改进版）</td><td>61.56%</td><td>60.90%</td><td>96.99%</td></tr>
+    <tr><td>DeepSeek-R1-14B</td><td>零样本</td><td>55.60%</td><td>54.48%</td><td>89.93%</td></tr>
+  </table>
+
+  <div class="finding-box">
+    <p><strong>为什么 Qwen 零样本就已接近微调水平？</strong>Qwen2.5-7B-Instruct 在预训练阶段见过大量评论类文本和指令跟随数据，本身已具备理解评论情感与星级关系的能力。LoRA 微调的边际增益极小（二分类仅 +0.39%），反映的是该任务对该模型的能力天花板，而非微调方法的局限。</p>
+    <p><strong>为什么 DeepSeek 零样本效果很差？</strong>DeepSeek-R1 是推理模型，需要生成完整的思维链（chain-of-thought）后才能输出最终答案。<code>max_tokens</code> 不足时，推理链在中途被截断，模型从未得出最终标签。这是提示词工程问题，而非模型能力问题——增大 token 预算并加入 few-shot 示例后，5 分类准确率从 55.6% 跳升至 61.6%。详见上方"DeepSeek 提示词优化"模块。</p>
+    <p><strong>为什么 LoRA 微调能有效提升？</strong>LoRA 冻结基础模型权重，仅学习少量低秩更新矩阵，在保留预训练语言知识的同时适应输出格式。对于能力已经很强的大模型，LoRA 的核心作用是<em>格式对齐</em>（如输出单个数字而非一段话），而非能力的根本提升，因此准确率增益稳定但幅度有限。</p>
+    <p><strong>为什么 DeepSeek 微调要用思维链训练数据？</strong>若直接用"输入→标签"对进行微调，会压制模型的链式推理结构，破坏其推理能力。方案是先让模型对训练集运行推理，从预测正确的样本中提取 <code>&lt;think&gt;...&lt;/think&gt;</code> 推理链，再以"输入 → 思维链 + 标签"的格式进行训练，从而在保留推理能力的同时提升分类准确率。</p>
+  </div>
+
+  <!-- 第四阶段 -->
+  <h2>第四阶段 — 商业智能 Agent</h2>
+  <p>第四阶段将任务从分类扩展为针对 Yelp 评论数据的开放式问答。
+  构建了两层系统，并与无检索 LLM 基线进行三方对比评估。</p>
+
+  <h3>系统架构</h3>
+  <div class="arch">
+    <div class="arch-col">
+      <div class="arch-header">第一层 — RAG Baseline（固定流程）</div>
+      <div class="arch-body">
+        <div class="arch-step"><div class="arch-arrow">1</div><span><code>get_business_stats</code>（获取统计信息）</span></div>
+        <div class="arch-step"><div class="arch-arrow">2</div><span><code>search_by_business</code> / <code>search_global</code>（语义检索）</span></div>
+        <div class="arch-step"><div class="arch-arrow">3</div><span><code>summarize_evidence</code> → 结构化回答</span></div>
+      </div>
+    </div>
+    <div class="arch-col">
+      <div class="arch-header">第二层 — Full Agent（LangGraph ReAct）</div>
+      <div class="arch-body">
+        <div class="arch-step"><div class="arch-arrow">→</div><span>Qwen2.5-7B 自主决定调用哪些工具</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>迭代执行：思考 → 工具调用 → 观察结果</span></div>
+        <div class="arch-step"><div class="arch-arrow">→</div><span>输出最终回答及完整工具调用轨迹</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:12px">Full Agent 内部的 ReAct 循环持续迭代，直至模型判断无需再调用工具：</p>
+
+  <div style="margin:14px 0;font-family:sans-serif;font-size:0.88em">
+    <!-- 用户问题 -->
+    <div style="text-align:center;margin-bottom:6px">
+      <span style="background:#2c3e50;color:#fff;padding:6px 24px;border-radius:20px;font-weight:bold;letter-spacing:0.03em">用户问题</span>
+    </div>
+    <div style="text-align:center;color:#7f8c8d;font-size:1.1em;margin-bottom:8px">↓</div>
+    <!-- 两列 -->
+    <div style="display:flex;gap:16px;align-items:flex-start">
+
+      <!-- 第一层 -->
+      <div style="flex:1;border:2px solid #2471a3;border-radius:8px;overflow:hidden">
+        <div style="background:#2471a3;color:#fff;padding:8px 12px;text-align:center">
+          <div style="font-weight:bold">第一层 — RAG Baseline</div>
+          <div style="font-size:0.83em;opacity:0.88;margin-top:2px">固定流程</div>
+        </div>
+        <div style="padding:12px 14px;background:#eaf4fc">
+          <div style="background:#fff;border:1px solid #aed6f1;border-radius:5px;padding:7px 10px;text-align:center;margin-bottom:5px"><code>get_business_stats</code>（获取统计）</div>
+          <div style="text-align:center;color:#2471a3;margin:3px 0">↓</div>
+          <div style="background:#fff;border:1px solid #aed6f1;border-radius:5px;padding:7px 10px;text-align:center;margin-bottom:5px"><code>search_by_business</code> / <code>search_global</code>（语义检索）</div>
+          <div style="text-align:center;color:#2471a3;margin:3px 0">↓</div>
+          <div style="background:#fff;border:1px solid #aed6f1;border-radius:5px;padding:7px 10px;text-align:center;margin-bottom:8px"><code>summarize_evidence</code>（证据综合）</div>
+          <div style="text-align:center;color:#2471a3;margin:3px 0">↓</div>
+          <div style="background:#2471a3;color:#fff;border-radius:5px;padding:7px 10px;text-align:center;font-weight:bold">结构化回答</div>
+        </div>
+      </div>
+
+      <!-- 第二层 -->
+      <div style="flex:1;border:2px solid #7d3c98;border-radius:8px;overflow:hidden">
+        <div style="background:#7d3c98;color:#fff;padding:8px 12px;text-align:center">
+          <div style="font-weight:bold">第二层 — Full Agent</div>
+          <div style="font-size:0.83em;opacity:0.88;margin-top:2px">LangGraph ReAct 自主决策</div>
+        </div>
+        <div style="padding:12px 14px;background:#f5eef8">
+          <div style="background:#7d3c98;color:#fff;border-radius:5px;padding:6px 10px;text-align:center;font-weight:bold;margin-bottom:10px">Qwen2.5-7B（通过 Ollama）</div>
+          <!-- ReAct 循环框 -->
+          <div style="border:2px dashed #a569bd;border-radius:7px;padding:10px 12px 8px;background:#fff;position:relative;margin-bottom:8px">
+            <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#f5eef8;padding:0 8px;font-size:0.8em;color:#7d3c98;font-weight:bold">↺ ReAct 循环</div>
+            <div style="background:#d7bde2;border-radius:4px;padding:6px 10px;text-align:center;margin-bottom:5px">① 决定调用哪个工具</div>
+            <div style="text-align:center;color:#7d3c98;margin:2px 0">↓</div>
+            <div style="background:#d7bde2;border-radius:4px;padding:6px 10px;text-align:center;margin-bottom:5px">② 调用工具</div>
+            <div style="text-align:center;color:#7d3c98;margin:2px 0">↓</div>
+            <div style="background:#d7bde2;border-radius:4px;padding:6px 10px;text-align:center">③ 观察工具结果</div>
+            <div style="text-align:center;font-size:0.8em;color:#7d3c98;margin-top:6px">循环迭代，直至无需再调用工具</div>
+          </div>
+          <div style="text-align:center;color:#7d3c98;margin:3px 0">↓</div>
+          <div style="background:#7d3c98;color:#fff;border-radius:5px;padding:7px 10px;text-align:center;font-weight:bold">最终回答 + 工具调用轨迹</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <h3>技术栈</h3>
+  <div style="margin-bottom:14px">
+    <span class="tag">LangGraph create_react_agent</span>
+    <span class="tag">Qwen2.5-7B via Ollama</span>
+    <span class="tag">FAISS IndexFlatIP</span>
+    <span class="tag">all-MiniLM-L6-v2</span>
+    <span class="tag">RoBERTa-base 分类器</span>
+    <span class="tag">LangChain + langchain-ollama</span>
+    <span class="tag">Gradio 5</span>
+  </div>
+
+  <h3>向量知识库</h3>
+  <ul>
+    <li>5 万条 Yelp 评论 → <strong>60,823 个文本块</strong>（按句子切分，每块 ≤180 词）</li>
+    <li>使用 <code>all-MiniLM-L6-v2</code> 编码（384 维，L2 归一化 → 内积等价于余弦相似度）</li>
+    <li>FAISS <code>IndexFlatIP</code> 精确最近邻检索</li>
+    <li>商家内预过滤检索：仅加载目标商家的嵌入子集做矩阵乘法，避免小商家结果被稀释</li>
+  </ul>
+
+  <h3>评测设置</h3>
+  <p>20 道问题 × 4 种题型 × 3 个系统 = 60 组回答。人工在 5 个维度上评分（每维 0–2 分，满分 10 分）。</p>
+
+  <table>
+    <tr><th>题型</th><th>示例问题</th></tr>
+    <tr><td>投诉挖掘</td><td>"顾客对这家商家最多抱怨什么？"</td></tr>
+    <tr><td>方面分析</td><td>"顾客对食物和服务分别有哪些褒贬意见？"</td></tr>
+    <tr><td>商家画像</td><td>"根据评论，请给出这家商家的整体画像。"</td></tr>
+    <tr><td>跨商家规律</td><td>"Yelp 评论中，等待时间投诉与星级评分之间是否存在规律？"</td></tr>
+  </table>
+
+  <h3>评测结果</h3>
+  <table>
+    <tr><th>系统</th><th>正确性</th><th>证据引用</th><th>可溯源性</th><th>工具使用</th><th>效率</th><th>总分 /10</th></tr>
+    <tr><td>Direct LLM</td><td>0.25</td><td>0.00</td><td>0.00</td><td>0.00</td><td>1.70</td><td>1.95</td></tr>
+    <tr><td class="best">RAG Baseline</td><td class="best">0.95</td><td class="best">1.60</td><td class="best">1.75</td><td>0.95</td><td>1.65</td><td class="best">6.90</td></tr>
+    <tr><td>Full Agent</td><td>1.05</td><td>1.15</td><td>1.15</td><td class="best">1.30</td><td>0.10</td><td>4.75</td></tr>
+  </table>
+
+  <table>
+    <tr><th>系统</th><th>幻觉率</th><th>平均响应时间</th></tr>
+    <tr><td>Direct LLM</td><td>100%</td><td>约 9 秒</td></tr>
+    <tr><td>Full Agent</td><td>25%</td><td>约 45 秒</td></tr>
+    <tr><td class="best">RAG Baseline</td><td class="best">5%</td><td>约 9 秒</td></tr>
+  </table>
+
+  <div class="finding-box">
+    <p><strong>RAG Baseline（6.90/10）：</strong>固定的工具调用顺序保证了稳定性，证据引用充分，幻觉率仅 5%，充分证明了检索增强对于直接生成方式的优越性。</p>
+    <p><strong>Full Agent（4.75/10）：</strong>在方面分析和跨商家规律等复杂题型上正确性最高，自主工具选择具有优势。但 7B 模型在 ReAct 提示下的不稳定性导致幻觉率达 25%，效率得分极低（0.10）。</p>
+    <p><strong>Direct LLM（1.95/10）：</strong>无法访问评论数据，回答均为泛泛而谈，幻觉率 100%。结果证实：对于特定商家的问答任务，检索增强是不可或缺的。</p>
+  </div>
+
+  <!-- 跨阶段汇总 -->
+  <h2>跨阶段性能汇总</h2>
+  <table>
+    <tr><th>阶段</th><th>最优方法</th><th>任务</th><th>关键指标</th></tr>
+    <tr><td>第一阶段</td><td>BERT 微调</td><td>5 分类</td><td>Accuracy 62.50%</td></tr>
+    <tr><td>第二阶段</td><td>RoBERTa-base（LR=1e-5，ep=4）</td><td>5 分类</td><td>Accuracy 68.56%</td></tr>
+    <tr><td>第三阶段</td><td>Qwen2.5-7B LoRA bf16</td><td>5 分类</td><td>Accuracy 69.59%</td></tr>
+    <tr><td>第四阶段</td><td>RAG Baseline</td><td>开放式问答</td><td>总分 6.90/10，幻觉率 5%</td></tr>
+  </table>
+
+  <p>分类准确率的天花板反映了星级预测任务的固有难度（相邻星级语义相近），
+  这也体现在各模型始终高达 97% 以上的 Off-by-1 准确率上。
+  第四阶段将问题重新定义为开放式商业智能问答，检索增强与结构化工具调用带来了
+  最显著的质的飞跃。</p>
+
+  <!-- 项目亮点 -->
+  <h2>项目亮点</h2>
+  <ul>
+    <li><strong>RAG 流水线设计：</strong>chunk 级 FAISS 索引、商家内预过滤检索、基于证据的结构化综合</li>
+    <li><strong>LangGraph Agent 实现：</strong>ReAct 循环、工具绑定（<code>create_react_agent</code>）、消息轨迹提取</li>
+    <li><strong>面向小模型的工具设计：</strong>将检索工具拆分为两个职责明确的工具，显著提升 7B 模型工具选择可靠性</li>
+    <li><strong>结构化评测体系：</strong>5 维度评分标准设计、三方系统对比、幻觉率量化</li>
+    <li><strong>生产级工程实践：</strong>崩溃续跑评测脚本、多层 JSON 容错解析、配置集中管理</li>
+    <li><strong>可交互 Demo：</strong>Gradio 5 应用，支持 160 个商家的可搜索下拉菜单、实时工具调用日志和证据并排展示</li>
+    <li><strong>系统化 ML 实验：</strong>216 组超参数搜索，自动化日志记录与结果聚合（第二阶段）</li>
+  </ul>
+
+  <div style="margin-top:40px; padding-top:16px; border-top:1px solid #ddd; font-size:9pt; color:#aaa; text-align:center;">
+    CSE4601 文本挖掘项目 &nbsp;·&nbsp; github.com/YuhanWang03/Yelp-Project
+  </div>
+
+</div>
+</body>
+</html>
