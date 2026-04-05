@@ -1,8 +1,61 @@
+# ── Raw data ────────────────────────────────────────────────
 data/raw/
-submit_nlp.sh
+
+# ── IDE / tooling ────────────────────────────────────────────
 .idea/
-s1_baseline_models/
-s2_bert_models/
+.vscode/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# ── Claude Code local memory (private) ───────────────────────
+.claude/
+
+# ── Stage 1: model weights (already ignored) ─────────────────
+s1_baseline_models/
+
+# ── Stage 1: embedding cache ──────────────────────────────────
+s1_baseline_results/baseline_embedding/cache/
+
+# ── Stage 2: model checkpoints ───────────────────────────────
+s2_bert_models/
+
+
+# ── Stage 3: LoRA adapter model weights ──────────────────────
+# adapter_model.safetensors: 262–308 MB each (exceeds GitHub 100 MB limit)
+s3_LLM/**/adapter_model.safetensors
+
+# Optimizer states saved with checkpoints (525–616 MB each, not needed for inference)
+s3_LLM/**/optimizer.pt
+
+# Intermediate training checkpoints (contain duplicates of the above)
+s3_LLM/**/checkpoint-*/
+
+# Tokenizer files bundled into lora_adapter (10.9 MB each, available from HuggingFace)
+s3_LLM/**/lora_adapter/tokenizer.json
+s3_LLM/**/lora_adapter/tokenizer_config.json
+
+# Raw inference output (19.9 MB, intermediate file, can be regenerated)
+s3_LLM/deepseek_thinking_chains/train_raw_outputs.csv
+
+# ── Stage 4: large binary artifacts (regeneratable) ──────────
+# RoBERTa model weights: 475 MB (exceeds GitHub 100 MB limit)
+# Regenerate: python s4_agent/step0_train_and_save.py
+s4_agent/artifacts/roberta_5class_best/model.safetensors
+
+# FAISS vector index: 89 MB (binary, regeneratable)
+# Regenerate: python s4_agent/vectorstore/build_vectorstore.py
+s4_agent/vectorstore/review_chunks.index
+
+# Review chunk metadata + embeddings: 136 MB (exceeds GitHub 100 MB limit)
+# Regenerate: python s4_agent/vectorstore/build_vectorstore.py
+s4_agent/vectorstore/review_chunks.pkl
+
+# ── Stage 4: temp / debug files ───────────────────────────────
+s4_agent/Screenshot*.png
+
+# ── Misc ─────────────────────────────────────────────────────
+submit_nlp.sh
+stage4_plan.md
+*.zip
+*.docx

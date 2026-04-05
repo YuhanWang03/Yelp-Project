@@ -1,0 +1,106 @@
+{
+  "Run_ID": "qwen2_5_7b_instruct_5class_finetune_bf16",
+  "Task_Type": "5_class",
+  "Mode": "LoRA_Finetune_BF16",
+  "Model": "Qwen/Qwen2.5-7B-Instruct",
+  "LoRA_r": 32,
+  "LoRA_alpha": 64,
+  "Train_Epochs": 2,
+  "Effective_Batch_Size": 32,
+  "Learning_Rate": 0.0002,
+  "Train_Time(s)": 9917.930781364441,
+  "Batch_Size": 16,
+  "Accuracy": 0.6958788480635552,
+  "Macro_F1": 0.6926970283361435,
+  "Valid_Prediction_Rate": 0.7714997126987168,
+  "Strict_Format_Rate": 0.760773798122965,
+  "Off_By_1_Acc": 0.9833664349553128,
+  "Adj_Error_Ratio": 0.9453061224489796,
+  "Mid_Confusion_Ratio": 0.1278550148957299,
+  "MSE": 0.3830685203574975,
+  "MAE": 0.3259682224428997,
+  "Eval_Time(s)": 1697.5990257263184,
+  "Eval_Speed(s/s)": 3.075520143966973,
+  "Confusion_Matrix": [
+    [
+      629,
+      138,
+      13,
+      1,
+      4
+    ],
+    [
+      132,
+      441,
+      112,
+      5,
+      5
+    ],
+    [
+      7,
+      160,
+      495,
+      144,
+      15
+    ],
+    [
+      2,
+      5,
+      89,
+      524,
+      197
+    ],
+    [
+      2,
+      1,
+      7,
+      186,
+      714
+    ]
+  ],
+  "Classification_Report": {
+    "1": {
+      "precision": 0.8147668393782384,
+      "recall": 0.8012738853503185,
+      "f1-score": 0.8079640333975594,
+      "support": 785.0
+    },
+    "2": {
+      "precision": 0.5919463087248322,
+      "recall": 0.6345323741007194,
+      "f1-score": 0.6125,
+      "support": 695.0
+    },
+    "3": {
+      "precision": 0.6913407821229051,
+      "recall": 0.6029232643118149,
+      "f1-score": 0.6441119063109955,
+      "support": 821.0
+    },
+    "4": {
+      "precision": 0.6093023255813953,
+      "recall": 0.6413708690330477,
+      "f1-score": 0.6249254621347644,
+      "support": 817.0
+    },
+    "5": {
+      "precision": 0.7636363636363637,
+      "recall": 0.7846153846153846,
+      "f1-score": 0.7739837398373983,
+      "support": 910.0
+    },
+    "accuracy": 0.6958788480635552,
+    "macro avg": {
+      "precision": 0.6941985238887469,
+      "recall": 0.6929431554822569,
+      "f1-score": 0.6926970283361435,
+      "support": 4028.0
+    },
+    "weighted avg": {
+      "precision": 0.6979380651707228,
+      "recall": 0.6958788480635552,
+      "f1-score": 0.6960388398993411,
+      "support": 4028.0
+    }
+  }
+}

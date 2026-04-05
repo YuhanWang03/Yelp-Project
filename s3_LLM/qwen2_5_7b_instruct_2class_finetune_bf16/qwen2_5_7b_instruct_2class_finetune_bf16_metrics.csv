@@ -1,0 +1,2 @@
+Run_ID,Task_Type,Mode,Model,LoRA_r,LoRA_alpha,Train_Epochs,Effective_Batch_Size,Learning_Rate,Train_Time(s),Batch_Size,Accuracy,Macro_F1,Valid_Prediction_Rate,Strict_Format_Rate,Off_By_1_Acc,Adj_Error_Ratio,Mid_Confusion_Ratio,MSE,MAE,Eval_Time(s),Eval_Speed(s/s)
+qwen2_5_7b_instruct_2class_finetune_bf16,2_class,LoRA_Finetune_BF16,Qwen/Qwen2.5-7B-Instruct,32,64,3,32,0.0002,14556.550678014755,16,0.9854927463731866,0.9854916970992904,0.9671020803096275,0.9654088050314465,,,,0.014507253626813406,0.014507253626813406,727.3254821300507,5.683837706185046

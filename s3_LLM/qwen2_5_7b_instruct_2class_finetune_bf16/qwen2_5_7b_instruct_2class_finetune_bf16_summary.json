@@ -1,0 +1,61 @@
+{
+  "Run_ID": "qwen2_5_7b_instruct_2class_finetune_bf16",
+  "Task_Type": "2_class",
+  "Mode": "LoRA_Finetune_BF16",
+  "Model": "Qwen/Qwen2.5-7B-Instruct",
+  "LoRA_r": 32,
+  "LoRA_alpha": 64,
+  "Train_Epochs": 3,
+  "Effective_Batch_Size": 32,
+  "Learning_Rate": 0.0002,
+  "Train_Time(s)": 14556.550678014755,
+  "Batch_Size": 16,
+  "Accuracy": 0.9854927463731866,
+  "Macro_F1": 0.9854916970992904,
+  "Valid_Prediction_Rate": 0.9671020803096275,
+  "Strict_Format_Rate": 0.9654088050314465,
+  "Off_By_1_Acc": null,
+  "Adj_Error_Ratio": null,
+  "Mid_Confusion_Ratio": null,
+  "MSE": 0.014507253626813406,
+  "MAE": 0.014507253626813406,
+  "Eval_Time(s)": 727.3254821300507,
+  "Eval_Speed(s/s)": 5.683837706185046,
+  "Confusion_Matrix": [
+    [
+      1953,
+      21
+    ],
+    [
+      37,
+      1987
+    ]
+  ],
+  "Classification_Report": {
+    "0": {
+      "precision": 0.9814070351758793,
+      "recall": 0.9893617021276596,
+      "f1-score": 0.9853683148335015,
+      "support": 1974.0
+    },
+    "1": {
+      "precision": 0.9895418326693227,
+      "recall": 0.9817193675889329,
+      "f1-score": 0.9856150793650794,
+      "support": 2024.0
+    },
+    "accuracy": 0.9854927463731866,
+    "macro avg": {
+      "precision": 0.985474433922601,
+      "recall": 0.9855405348582962,
+      "f1-score": 0.9854916970992904,
+      "support": 3998.0
+    },
+    "weighted avg": {
+      "precision": 0.9855253018408942,
+      "recall": 0.9854927463731866,
+      "f1-score": 0.9854932401491378,
+      "support": 3998.0
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id2label": {
+    "0": "1_star",
+    "1": "2_star",
+    "2": "3_star",
+    "3": "4_star",
+    "4": "5_star"
+  },
+  "label2id": {
+    "1_star": 0,
+    "2_star": 1,
+    "3_star": 2,
+    "4_star": 3,
+    "5_star": 4
+  },
+  "num_labels": 5,
+  "task_type": "5_class",
+  "model_name": "roberta-base",
+  "val_accuracy": 0.6809950248756219,
+  "val_macro_f1": 0.6804209336575827
+}

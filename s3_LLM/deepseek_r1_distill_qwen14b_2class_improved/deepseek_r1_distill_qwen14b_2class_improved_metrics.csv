@@ -1,0 +1,2 @@
+Run_ID,Task_Type,Mode,Model,Batch_Size,Max_New_Tokens,Few_Shot,Accuracy,Macro_F1,Valid_Prediction_Rate,Strict_Format_Rate,Off_By_1_Acc,Adj_Error_Ratio,Mid_Confusion_Ratio,MSE,MAE,Eval_Time(s),Eval_Speed(s/s)
+deepseek_r1_distill_qwen14b_2class_improved,2_class,Prompt_Inference_Improved,deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,16,512,True,0.9733365949119374,0.9733333636550081,0.9888727624576681,0.980648282535075,,,,0.02666340508806262,0.02666340508806262,2320.543268918991,1.7814793869048584

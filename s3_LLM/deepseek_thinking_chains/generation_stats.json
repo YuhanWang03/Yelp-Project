@@ -1,0 +1,11 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+  "total_train_samples": 9998,
+  "valid_pred_rate": 0.9997999599919984,
+  "correct_5class_rate": 0.6459291858371674,
+  "has_thinking_rate": 0.9977995599119824,
+  "kept_5class": 6441,
+  "kept_2class": 5439,
+  "generation_time_s": 12097.089195489883,
+  "avg_thinking_length": 1434.3932619158516
+}
