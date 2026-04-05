@@ -542,8 +542,3 @@ If you are browsing this repository for the first time, the most natural order i
 - If you do not include raw Yelp data in the repository, add a short note in `data/` describing how to obtain and preprocess it.
 - Stage 4 requires Ollama running locally with `qwen2.5:7b` pulled.
 
----
-
-## License
-
-Add your preferred license here if you plan to make the repository public.

@@ -541,8 +541,3 @@ python s4_agent/evaluation/run_eval.py --summarise
 - 如果仓库中不包含原始 Yelp 数据，建议在 `data/` 中补充一个简短说明，介绍如何获取并预处理数据。
 - 第四阶段需要在本地运行 Ollama 并提前拉取 `qwen2.5:7b` 模型。
 
----
-
-## License
-
-如果你计划公开这个仓库，请在这里补充你希望使用的许可证。
