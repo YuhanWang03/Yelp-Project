@@ -176,7 +176,7 @@
 
   /* ── Print — single continuous page ── */
   @page {
-    size: 210mm 2600mm;
+    size: 210mm 2700mm;
     margin: 0;
   }
   @media print {
@@ -574,6 +574,19 @@ Review: {text}</pre>
 
     </div>
   </div>
+
+  <h3>Agent Tools</h3>
+  <table>
+    <tr><th>Tool</th><th>Description</th></tr>
+    <tr><td><code>get_business_stats</code></td><td>Returns review count, average stars, and star distribution for a given business</td></tr>
+    <tr><td><code>search_review_chunks_by_business</code></td><td>Semantic search restricted to a single business (pre-filtered FAISS query)</td></tr>
+    <tr><td><code>search_review_chunks_global</code></td><td>Global semantic search across all 60,823 chunks regardless of business</td></tr>
+    <tr><td><code>summarize_evidence</code></td><td>Calls Qwen via Ollama to synthesize retrieved chunks into structured findings</td></tr>
+    <tr><td><code>classify_review</code></td><td>Runs the Stage 2 RoBERTa 5-class classifier on a review text</td></tr>
+  </table>
+  <p>The two retrieval tools are split intentionally: giving a 7B model one focused tool per
+  scope significantly improves tool-selection reliability compared to a single multi-purpose
+  retrieval tool.</p>
 
   <h3>Technical Stack</h3>
   <div style="margin-bottom:14px">

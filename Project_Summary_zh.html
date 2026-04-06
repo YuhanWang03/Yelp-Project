@@ -176,7 +176,7 @@
 
   /* ── Print — single continuous page ── */
   @page {
-    size: 210mm 2500mm;
+    size: 210mm 2600mm;
     margin: 0;
   }
   @media print {
@@ -521,6 +521,18 @@ Review: {text}</pre>
 
     </div>
   </div>
+
+  <h3>Agent 工具列表</h3>
+  <table>
+    <tr><th>工具</th><th>功能描述</th></tr>
+    <tr><td><code>get_business_stats</code></td><td>返回指定商家的评论数量、平均星级及星级分布</td></tr>
+    <tr><td><code>search_review_chunks_by_business</code></td><td>在单个商家范围内进行语义检索（预过滤的 FAISS 查询）</td></tr>
+    <tr><td><code>search_review_chunks_global</code></td><td>在全部 60,823 个文本块中进行全局语义检索</td></tr>
+    <tr><td><code>summarize_evidence</code></td><td>调用 Qwen（通过 Ollama）将检索到的文本块综合为结构化结论</td></tr>
+    <tr><td><code>classify_review</code></td><td>调用第二阶段训练的 RoBERTa 5 分类器对评论文本进行星级预测</td></tr>
+  </table>
+  <p>两个检索工具有意拆分：让 7B 模型每次只面对一个职责单一的工具，相比合并为一个多功能检索工具，
+  能显著提升工具选择的可靠性。</p>
 
   <h3>技术栈</h3>
   <div style="margin-bottom:14px">
