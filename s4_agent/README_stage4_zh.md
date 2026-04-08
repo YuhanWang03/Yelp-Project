@@ -47,6 +47,8 @@ Stage 4 采用两层架构：
 
 ## Demo 演示
 
+🚀 **在线演示：** [huggingface.co/spaces/YUHAN03/yelp-agent](https://huggingface.co/spaces/YUHAN03/yelp-agent)
+
 **RAG Baseline** — 固定流程：统计 → 检索 → 综合：
 
 ![RAG Baseline Demo](RAG_Baseline.gif)

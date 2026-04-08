@@ -303,6 +303,8 @@ Stage 4 extends the project from classification to open-ended question answering
 
 ### Demo
 
+🚀 **Live Demo:** [huggingface.co/spaces/YUHAN03/yelp-agent](https://huggingface.co/spaces/YUHAN03/yelp-agent)
+
 **RAG Baseline** — Fixed retrieval pipeline (Stats → Search → Summarize):
 
 ![RAG Baseline Demo](s4_agent/RAG_Baseline.gif)

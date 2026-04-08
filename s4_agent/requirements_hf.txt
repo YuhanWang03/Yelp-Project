@@ -1,0 +1,12 @@
+gradio>=4.0.0
+groq
+langchain
+langchain-groq
+langchain-core
+langgraph
+huggingface_hub
+sentence-transformers
+faiss-cpu
+torch
+transformers
+numpy

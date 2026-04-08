@@ -1,0 +1,1122 @@
+{
+  "SZU9c8V2GuREDN5KgyHFJw": {
+    "name": "Santa Barbara Shellfish Company",
+    "city": "Santa Barbara",
+    "stars": 4.0,
+    "categories": "Live/Raw Food",
+    "chunk_count": 203
+  },
+  "ORL4JE6tz3rJxVqkdKfegA": {
+    "name": "Gaylord Opryland Resort & Convention Center",
+    "city": "Nashville",
+    "stars": 3.0,
+    "categories": "Venues & Event Spaces",
+    "chunk_count": 275
+  },
+  "6I_DA3uqOox50rBvjrQ_-g": {
+    "name": "Aloft Philadelphia Airport",
+    "city": "Philadelphia",
+    "stars": 3.0,
+    "categories": "Event Planning & Services",
+    "chunk_count": 55
+  },
+  "7mpYTDb24SywNMRn3yeakQ": {
+    "name": "The Twisted Tail",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Event Planning & Services",
+    "chunk_count": 77
+  },
+  "dIpTuL2T1L98GQGU17IeSw": {
+    "name": "The Bricks",
+    "city": "Tampa",
+    "stars": 4.0,
+    "categories": "Bars",
+    "chunk_count": 62
+  },
+  "pNu5bd9aL3jcJClfdQ86MQ": {
+    "name": "Momo's Ouzaria Taverna",
+    "city": "St Louis",
+    "stars": 3.5,
+    "categories": "Mediterranean",
+    "chunk_count": 55
+  },
+  "diwwt5QBU3-Thig9SVlsOA": {
+    "name": "Brew Brothers",
+    "city": "Reno",
+    "stars": 3.5,
+    "categories": "Bars",
+    "chunk_count": 60
+  },
+  "H3JjbID9Zhukpqr9uupHAA": {
+    "name": "Jackson's Bar & Bistro - Nashville",
+    "city": "Nashville",
+    "stars": 3.0,
+    "categories": "Burgers",
+    "chunk_count": 102
+  },
+  "W4ZEKkva9HpAdZG88juwyQ": {
+    "name": "Mr. B's Bistro",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "Bars",
+    "chunk_count": 219
+  },
+  "SSZDGl2J-CEyIzuIbEiYNQ": {
+    "name": "Caleco's Bar & Grill",
+    "city": "Saint Louis",
+    "stars": 3.0,
+    "categories": "Bars",
+    "chunk_count": 78
+  },
+  "WQ832PDnsDshhbQFm83ISg": {
+    "name": "Villagio Cinemas",
+    "city": "Tampa",
+    "stars": 3.0,
+    "categories": "Cinema",
+    "chunk_count": 63
+  },
+  "plobBsTtVUODb353xxFT_g": {
+    "name": "Sushi Rose",
+    "city": "Reno",
+    "stars": 3.5,
+    "categories": "Sushi Bars",
+    "chunk_count": 63
+  },
+  "s3FRhtaNU8dt-mKkLKUQaQ": {
+    "name": "RuSan's Sushi and Seafood",
+    "city": "Nashville",
+    "stars": 3.0,
+    "categories": "Sushi Bars",
+    "chunk_count": 56
+  },
+  "MMRRS6YhVRx_iN5-JhMRYg": {
+    "name": "Han Dynasty",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 107
+  },
+  "8uF-bhJFgT4Tn6DTb27viA": {
+    "name": "District Donuts Sliders Brew",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Food",
+    "chunk_count": 167
+  },
+  "2oav5QoWgnvTI2gO5xFMjw": {
+    "name": "Kimpton Hotel Monaco Philadelphia",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Hotels & Travel",
+    "chunk_count": 51
+  },
+  "2Q1R2OhBbAQ581vK_r7NhA": {
+    "name": "Ooka Restaurant",
+    "city": "Willow Grove",
+    "stars": 4.0,
+    "categories": "Sushi Bars",
+    "chunk_count": 54
+  },
+  "zSqTndm5Alq9dW1PyzbdTA": {
+    "name": "Grand Isle",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "Seafood",
+    "chunk_count": 59
+  },
+  "hkh5iyDeGLNhu-JUQFRE1Q": {
+    "name": "Royal Sonesta New Orleans",
+    "city": "New Orleans",
+    "stars": 3.5,
+    "categories": "Event Planning & Services",
+    "chunk_count": 66
+  },
+  "UCMSWPqzXjd7QHq7v8PJjQ": {
+    "name": "Prep & Pastry",
+    "city": "Tucson",
+    "stars": 4.5,
+    "categories": "Restaurants",
+    "chunk_count": 138
+  },
+  "TghRoAMx43V-9l7mH-SENg": {
+    "name": "Crabby Bills Clearwater Beach",
+    "city": "Clearwater Beach",
+    "stars": 3.5,
+    "categories": "Food",
+    "chunk_count": 60
+  },
+  "pym7c6ZFEtmoH16xN2ApBg": {
+    "name": "Katie's Restaurant & Bar",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Restaurants",
+    "chunk_count": 98
+  },
+  "CPFKi2lZJazP6IdtCdDDyg": {
+    "name": "Coffeebar",
+    "city": "Reno",
+    "stars": 4.5,
+    "categories": "Bars",
+    "chunk_count": 52
+  },
+  "7lwe7n-Yc-V9E_HfLAeylg": {
+    "name": "Pub & Kitchen",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Restaurants",
+    "chunk_count": 97
+  },
+  "oBhJuukGRqPVvYBfTkhuZA": {
+    "name": "Square 1682",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "American (New)",
+    "chunk_count": 70
+  },
+  "hn3Rg2JrhQoDJBEhrpuwWg": {
+    "name": "Granite City Food & Brewery",
+    "city": "Franklin",
+    "stars": 3.5,
+    "categories": "Food",
+    "chunk_count": 53
+  },
+  "AzseSGgDC6bVtMPEYo1CNQ": {
+    "name": "Creole Creamery",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Food",
+    "chunk_count": 54
+  },
+  "8QJTzIaR5FceGds8HBSIig": {
+    "name": "Barrio Brewing",
+    "city": "Tucson",
+    "stars": 4.0,
+    "categories": "Nightlife",
+    "chunk_count": 54
+  },
+  "EQ-TZ2eeD_E0BHuvoaeG5Q": {
+    "name": "Milktooth",
+    "city": "Indianapolis",
+    "stars": 4.0,
+    "categories": "Beer",
+    "chunk_count": 101
+  },
+  "O6hY9yenifuRXrpc4TfgsQ": {
+    "name": "The Blue Duck",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 87
+  },
+  "TDKBPcViJQDMrdUm6a9XZA": {
+    "name": "The Depot Craft Brewery Distillery",
+    "city": "Reno",
+    "stars": 4.0,
+    "categories": "Food",
+    "chunk_count": 110
+  },
+  "mLNSOU8Ki0Fm09xd6ZKkcA": {
+    "name": "Timpano Hyde Park",
+    "city": "Tampa",
+    "stars": 3.5,
+    "categories": "Music Venues",
+    "chunk_count": 66
+  },
+  "mUIBtlWNPD7sz3rGGWQ1RA": {
+    "name": "Kanella",
+    "city": "Philadelphia",
+    "stars": 4.5,
+    "categories": "Mediterranean",
+    "chunk_count": 86
+  },
+  "JvawJ9bSr22xn4R9oLvl_w": {
+    "name": "Desire Oyster Bar",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "Southern",
+    "chunk_count": 109
+  },
+  "BWITd9JUXP3gSi1z3Y-z8g": {
+    "name": "In Riva",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Italian",
+    "chunk_count": 80
+  },
+  "cg4JFJcCxRTTMmcg9O9KtA": {
+    "name": "Ava",
+    "city": "Tampa",
+    "stars": 3.5,
+    "categories": "Wine Bars",
+    "chunk_count": 66
+  },
+  "MaYb7qMN6BomP1zQGj3Wjg": {
+    "name": "Pi Pizzeria - Delmar Loop",
+    "city": "Saint Louis",
+    "stars": 4.0,
+    "categories": "Nightlife",
+    "chunk_count": 69
+  },
+  "0wQCEcpZ57TmTm6EmEDsIw": {
+    "name": "Hendricks BBQ",
+    "city": "St Charles",
+    "stars": 3.5,
+    "categories": "Food",
+    "chunk_count": 103
+  },
+  "jTI5Xjk27An8ceJ6VwpXiQ": {
+    "name": "DoubleTree by Hilton Hotel Philadelphia Center City",
+    "city": "Philadelphia",
+    "stars": 3.0,
+    "categories": "Hotels",
+    "chunk_count": 70
+  },
+  "2er_V-oAd7IbQ5YTY56r7A": {
+    "name": "Bareburger - Midtown Village",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 87
+  },
+  "1FURjeGJi_LBXcJQg8eskw": {
+    "name": "Padaro Beach Grill",
+    "city": "Carpinteria",
+    "stars": 4.5,
+    "categories": "American (Traditional)",
+    "chunk_count": 59
+  },
+  "I5KZm-NnxYeEQsmp6nK5_w": {
+    "name": "Las Cazuelas Restaurant BYOB",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Food",
+    "chunk_count": 59
+  },
+  "jMZ56S8Y1t7cA1Ob-d-qeA": {
+    "name": "Three Muses",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "Nightlife",
+    "chunk_count": 132
+  },
+  "GBTPC53ZrG1ZBY3DT8Mbcw": {
+    "name": "Luke",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "German",
+    "chunk_count": 515
+  },
+  "g04aAvgol7IW8buqSbT4xA": {
+    "name": "Cafe Fleur De Lis",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "Breakfast & Brunch",
+    "chunk_count": 156
+  },
+  "VRGYwKE_Z77frm5NwLvJhw": {
+    "name": "Burger Republic",
+    "city": "Nashville",
+    "stars": 4.0,
+    "categories": "Bars",
+    "chunk_count": 87
+  },
+  "m5-FtgWRd4qA7j0vaOXiXQ": {
+    "name": "Preservation Hall",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Music Venues",
+    "chunk_count": 54
+  },
+  "bXjnfT69E8DJinX-ifOofA": {
+    "name": "Wings Over Broadway",
+    "city": "Tucson",
+    "stars": 3.5,
+    "categories": "Chicken Wings",
+    "chunk_count": 51
+  },
+  "gK9CdFaCXmHoW8aLfXiSqg": {
+    "name": "Tired Hands Fermentaria",
+    "city": "Ardmore",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 51
+  },
+  "jQBPO3rYkNwIaOdQS5ktgQ": {
+    "name": "The Fountain On Locust",
+    "city": "Saint Louis",
+    "stars": 4.5,
+    "categories": "Ice Cream & Frozen Yogurt",
+    "chunk_count": 72
+  },
+  "I6L0Zxi5Ww0zEWSAVgngeQ": {
+    "name": "Cafe Beignet on Bourbon Street",
+    "city": "New Orleans",
+    "stars": 3.5,
+    "categories": "Sandwiches",
+    "chunk_count": 89
+  },
+  "SIoCIxjn4jLt2O-4DajWJw": {
+    "name": "Mac's Tavern",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Nightlife",
+    "chunk_count": 59
+  },
+  "z680Aylt8wN2KAeFM1hy-A": {
+    "name": "Chatham Tap Mass. Ave.",
+    "city": "Indianapolis",
+    "stars": 4.0,
+    "categories": "Bars",
+    "chunk_count": 51
+  },
+  "pj8Y-5vfbRitnnm2xJFH9w": {
+    "name": "Jamaican Jerk Hut",
+    "city": "Philadelphia",
+    "stars": 2.5,
+    "categories": "Caribbean",
+    "chunk_count": 69
+  },
+  "P_x9fEz8efemqOIV46S0tg": {
+    "name": "Red Mesa Restaurant",
+    "city": "St Petersburg",
+    "stars": 4.0,
+    "categories": "Bars",
+    "chunk_count": 54
+  },
+  "vFpbUcVAXxrSz5mFIzKbyw": {
+    "name": "Miller's Ale House - Springfield",
+    "city": "Springfield",
+    "stars": 3.0,
+    "categories": "Sports Bars",
+    "chunk_count": 56
+  },
+  "C_EtrXTygRX5RTUOKtO6Dg": {
+    "name": "Copabanana",
+    "city": "Philadelphia",
+    "stars": 3.0,
+    "categories": "Nightlife",
+    "chunk_count": 63
+  },
+  "X5fWO9e82EICHXzzs6eQMg": {
+    "name": "Rescue Spa",
+    "city": "Philadelphia",
+    "stars": 4.5,
+    "categories": "Makeup Artists",
+    "chunk_count": 59
+  },
+  "vN6v8m4DO45Z4pp8yxxF_w": {
+    "name": "Surrey's Café & Juice Bar",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Vegetarian",
+    "chunk_count": 152
+  },
+  "UmjITdXHhEF46ho6IhaGQg": {
+    "name": "Dave & Buster's",
+    "city": "New Orleans",
+    "stars": 2.0,
+    "categories": "Adult Entertainment",
+    "chunk_count": 51
+  },
+  "1UNorskttXSWuEcgzKzXcA": {
+    "name": "Xochitl",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Lounges",
+    "chunk_count": 77
+  },
+  "A2q7d-CBM2-81tVkmS4JMw": {
+    "name": "The Buffet",
+    "city": "Reno",
+    "stars": 3.5,
+    "categories": "American (New)",
+    "chunk_count": 91
+  },
+  "Zx7n8mdt8OzLRXVzolXNhQ": {
+    "name": "Milk and Honey Nashville",
+    "city": "Nashville",
+    "stars": 4.0,
+    "categories": "American (New)",
+    "chunk_count": 71
+  },
+  "L-YdO_NODKXXT3bkS0nUpg": {
+    "name": "RumFish Grill",
+    "city": "Saint Pete Beach",
+    "stars": 3.5,
+    "categories": "American (Traditional)",
+    "chunk_count": 96
+  },
+  "S2Ho8yLxhKAa26pBAm6rxA": {
+    "name": "Creole House Restaurant & Oyster Bar",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "Cajun/Creole",
+    "chunk_count": 103
+  },
+  "CA5BOxKRDPGJgdUQ8OUOpw": {
+    "name": "Maynards",
+    "city": "Tucson",
+    "stars": 4.0,
+    "categories": "Grocery",
+    "chunk_count": 73
+  },
+  "vD2jzpPv4iyOLKzITscGvA": {
+    "name": "Farmhaus Restaurant",
+    "city": "Saint Louis",
+    "stars": 4.0,
+    "categories": "Wine Bars",
+    "chunk_count": 57
+  },
+  "FHNIvNgh3fS7VZQq2Y3dsA": {
+    "name": "Cheu Noodle Bar",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Asian Fusion",
+    "chunk_count": 117
+  },
+  "ypXuDmnnPxnfP8a0qLsiEg": {
+    "name": "M.L.Rose Craft Beer & Burgers - Sylvan Park",
+    "city": "Nashville",
+    "stars": 3.5,
+    "categories": "Chicken Wings",
+    "chunk_count": 74
+  },
+  "hYonVJe6xzVBHHT2FLo4zg": {
+    "name": "312 Pizza Company",
+    "city": "Nashville",
+    "stars": 3.5,
+    "categories": "Restaurants",
+    "chunk_count": 95
+  },
+  "wa_bwyY57etHjtJ2Fw0E3g": {
+    "name": "Pita Jungle",
+    "city": "Tucson",
+    "stars": 3.5,
+    "categories": "Vegetarian",
+    "chunk_count": 78
+  },
+  "jULIPydhMj18KOI5OHTwfA": {
+    "name": "Buena Onda",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Tacos",
+    "chunk_count": 60
+  },
+  "196CWwMAtAcA21jYiMyRzg": {
+    "name": "Cafe Pontalba",
+    "city": "New Orleans",
+    "stars": 3.0,
+    "categories": "Restaurants",
+    "chunk_count": 94
+  },
+  "UakVMT3xrpbFB2pHdxPjnw": {
+    "name": "Crown & Bull",
+    "city": "Dunedin",
+    "stars": 3.5,
+    "categories": "Bars",
+    "chunk_count": 53
+  },
+  "oQ5CPRt0R3AzFvcjNOqB1w": {
+    "name": "Edley's Bar-B-Que - 12 South",
+    "city": "Nashville",
+    "stars": 4.0,
+    "categories": "Barbeque",
+    "chunk_count": 114
+  },
+  "EDjEVzmoQVHzboFqC-M6Ew": {
+    "name": "Local Taco",
+    "city": "Nashville",
+    "stars": 3.0,
+    "categories": "Food",
+    "chunk_count": 79
+  },
+  "29YqJwOGEuAWqlHZxMc1OA": {
+    "name": "Paradise Cafe",
+    "city": "Santa Barbara",
+    "stars": 3.5,
+    "categories": "American (Traditional)",
+    "chunk_count": 55
+  },
+  "TV81bpCQ6p6o4Hau5hk-zw": {
+    "name": "Hellas Restaurant",
+    "city": "Tarpon Springs",
+    "stars": 4.5,
+    "categories": "Food",
+    "chunk_count": 90
+  },
+  "b7V_5q22_eTeHlYzq1bpFw": {
+    "name": "Harbor Seafood & Oyster Bar",
+    "city": "Kenner",
+    "stars": 4.0,
+    "categories": "Seafood",
+    "chunk_count": 102
+  },
+  "4_W5pstoN1166TGjjPOrMg": {
+    "name": "Prohibition Taproom",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "American (Traditional)",
+    "chunk_count": 83
+  },
+  "BjBDHqHhMXSxgyVipccznQ": {
+    "name": "Rusty Pelican - Tampa",
+    "city": "Tampa",
+    "stars": 4.0,
+    "categories": "African",
+    "chunk_count": 64
+  },
+  "oLc7k78_YcDMnMCdbC-h1A": {
+    "name": "Lucy's Retired Surfers Bar & Restaurant",
+    "city": "New Orleans",
+    "stars": 3.5,
+    "categories": "American (Traditional)",
+    "chunk_count": 63
+  },
+  "j99PtxlKTW_u5alE4jiqHQ": {
+    "name": "Ralphs Italian Restaurant",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Restaurants",
+    "chunk_count": 101
+  },
+  "2KIDQyTh-HzLxOUEDqtDBg": {
+    "name": "Mazzaro's Italian Market",
+    "city": "Saint Petersburg",
+    "stars": 4.5,
+    "categories": "Specialty Food",
+    "chunk_count": 76
+  },
+  "4WdDY97x4GdMYtyk1KQMnw": {
+    "name": "Lilly's Cafe",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Cafes",
+    "chunk_count": 52
+  },
+  "V8H6z5ulGJEkaFUyRfmLKw": {
+    "name": "Sculley's Waterfront Restaurant",
+    "city": "Madeira Beach",
+    "stars": 2.5,
+    "categories": "Seafood",
+    "chunk_count": 67
+  },
+  "0qu0fNTOsSmuREYVIMPuIQ": {
+    "name": "Cold Spring Tavern",
+    "city": "Santa Barbara",
+    "stars": 4.5,
+    "categories": "American (Traditional)",
+    "chunk_count": 96
+  },
+  "Xq-8-I0U8Artr7d70SjX-g": {
+    "name": "30th Street Station",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Public Transportation",
+    "chunk_count": 52
+  },
+  "pSmOH4a3HNNpYM82J5ycLA": {
+    "name": "The Pancake Pantry",
+    "city": "Nashville",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 226
+  },
+  "ab3pRv-b0o-BwMK2jVbH3Q": {
+    "name": "Saki Endless Sushi & Hibachi Eatery",
+    "city": "Clearwater",
+    "stars": 3.5,
+    "categories": "Restaurants",
+    "chunk_count": 74
+  },
+  "B10mqANgHvL8gBteo1UhAA": {
+    "name": "Caruso's",
+    "city": "Tucson",
+    "stars": 3.5,
+    "categories": "Restaurants",
+    "chunk_count": 57
+  },
+  "d_tRshM-w6S4QxE4VVi8tQ": {
+    "name": "Jones",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "American (New)",
+    "chunk_count": 175
+  },
+  "RZtGWDLCAtuipwaZ-UfjmQ": {
+    "name": "LaScala's",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Pizza",
+    "chunk_count": 54
+  },
+  "WbA5ud4InNWkizW7HE5kRQ": {
+    "name": "Penca",
+    "city": "Tucson",
+    "stars": 3.5,
+    "categories": "Mexican",
+    "chunk_count": 77
+  },
+  "ompDR5sUDpoI6gnTldmneQ": {
+    "name": "The Praline Connection",
+    "city": "New Orleans",
+    "stars": 3.5,
+    "categories": "Seafood",
+    "chunk_count": 147
+  },
+  "MbzgGsMQpGyVrUJXi_Jw0Q": {
+    "name": "Dawn Patrol",
+    "city": "Santa Barbara",
+    "stars": 4.0,
+    "categories": "Coffee & Tea",
+    "chunk_count": 55
+  },
+  "KP5OncF2jhT7_J1phHPPww": {
+    "name": "Besito Mexican Restaurant",
+    "city": "Tampa",
+    "stars": 4.0,
+    "categories": "Mexican",
+    "chunk_count": 74
+  },
+  "yeHLiKNp0hyR-ig4M6us-w": {
+    "name": "Livery - Indianapolis",
+    "city": "Indianapolis",
+    "stars": 4.5,
+    "categories": "Food",
+    "chunk_count": 58
+  },
+  "4SQ5uczVt66-GGGeNQRfEA": {
+    "name": "Rotten Ralph's",
+    "city": "Philadelphia",
+    "stars": 2.5,
+    "categories": "Nightlife",
+    "chunk_count": 52
+  },
+  "htO_nlxkEsYHzDrtbiUxew": {
+    "name": "La Colombe Coffee",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 55
+  },
+  "DsKzHnkLKnxZTVsFpts4oA": {
+    "name": "Red Owl Tavern",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Breakfast & Brunch",
+    "chunk_count": 72
+  },
+  "9gObo5ltOMo6UgsaXaHPWA": {
+    "name": "R2L",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "American (New)",
+    "chunk_count": 126
+  },
+  "Z5po0aTuzKKblek5y6Sp8Q": {
+    "name": "500 Degrees",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Food",
+    "chunk_count": 87
+  },
+  "PY9GRfzr4nTZeINf346QOw": {
+    "name": "Peppermill Reno",
+    "city": "Reno",
+    "stars": 4.0,
+    "categories": "Event Planning & Services",
+    "chunk_count": 348
+  },
+  "n5P6-HWN3kFSYBxfVfDxEg": {
+    "name": "Shephard's Beach Resort",
+    "city": "Clearwater Beach",
+    "stars": 3.0,
+    "categories": "Hotels & Travel",
+    "chunk_count": 61
+  },
+  "eaDZlSuVS0EY67Ke6pRP6Q": {
+    "name": "Penang",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Malaysian",
+    "chunk_count": 125
+  },
+  "w520vYWEpEYBf90rSr9NVA": {
+    "name": "The Smiling Elephant",
+    "city": "Nashville",
+    "stars": 4.0,
+    "categories": "Thai",
+    "chunk_count": 52
+  },
+  "Dv6RfXLYe1atjgz3Xf4GGw": {
+    "name": "HipCityVeg",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Burgers",
+    "chunk_count": 117
+  },
+  "thCbLZ69suCvVNr4gPQU1Q": {
+    "name": "JW Marriott Indianapolis",
+    "city": "Indianapolis",
+    "stars": 4.0,
+    "categories": "Event Planning & Services",
+    "chunk_count": 60
+  },
+  "DeVlppoc8dPBhOCPrm4wmg": {
+    "name": "Harry & Izzy's",
+    "city": "Indianapolis",
+    "stars": 4.0,
+    "categories": "American (Traditional)",
+    "chunk_count": 88
+  },
+  "F8yozE3NWnImNApHO347gQ": {
+    "name": "Marrakesh",
+    "city": "Philadelphia",
+    "stars": 4.5,
+    "categories": "Restaurants",
+    "chunk_count": 89
+  },
+  "I0I2mkCOPTYVSLpc8A8VVw": {
+    "name": "Compère Lapin",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Personal Chefs",
+    "chunk_count": 76
+  },
+  "8eDkw7CE0NKqMknPIu26fw": {
+    "name": "Two Chicks Cafe",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Breakfast & Brunch",
+    "chunk_count": 51
+  },
+  "eMiN8nm70jjKg8izikVWDA": {
+    "name": "Chickie's & Pete's",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Seafood",
+    "chunk_count": 76
+  },
+  "TfcpJBiFNnDaochnmp4M2Q": {
+    "name": "The Garden Brunch Cafe",
+    "city": "Nashville",
+    "stars": 4.5,
+    "categories": "Cafes",
+    "chunk_count": 54
+  },
+  "JUlsvVAvZvGHWFfkKm0nlg": {
+    "name": "El Camino Real",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Mexican",
+    "chunk_count": 156
+  },
+  "ixPTo6Hum7nNZ7A4VPhTXg": {
+    "name": "Brick House Tavern + Tap",
+    "city": "Tampa",
+    "stars": 3.5,
+    "categories": "Restaurants",
+    "chunk_count": 67
+  },
+  "OHzX-ZD9qyoeoxR8Z0dlIA": {
+    "name": "Khyber Pass Pub",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 79
+  },
+  "EtKSTHV5Qx_Q7Aur9o4kQQ": {
+    "name": "Village Whiskey",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Bars",
+    "chunk_count": 210
+  },
+  "NT5S6JV5wPwKOd3s3Yh1zQ": {
+    "name": "Burger Up",
+    "city": "Nashville",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 107
+  },
+  "HCqmx4ENAZ76SAjoalj-MQ": {
+    "name": "Puckett's Grocery & Restaurant",
+    "city": "Franklin",
+    "stars": 4.0,
+    "categories": "Barbeque",
+    "chunk_count": 58
+  },
+  "pqe1pCQx--uybdm6EQ8AqQ": {
+    "name": "Elevation Burger",
+    "city": "Wynnewood",
+    "stars": 3.0,
+    "categories": "American (New)",
+    "chunk_count": 51
+  },
+  "u7_3L1NBWgxhBM_B-cmmnA": {
+    "name": "Pizzeria Vetri",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Italian",
+    "chunk_count": 86
+  },
+  "sr-5EY6bmp4jINhea06MjA": {
+    "name": "The Cake Bake Shop by Gwendolyn Rogers-Broad Ripple Village",
+    "city": "Indianapolis",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 92
+  },
+  "1aj1hnqPt3rqoB8tVRHLEA": {
+    "name": "Hotel Monteleone",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "Hotels & Travel",
+    "chunk_count": 87
+  },
+  "M0r9lUn2gLFYgIwIfG8-bQ": {
+    "name": "Baileys' Range",
+    "city": "Saint Louis",
+    "stars": 3.5,
+    "categories": "Ice Cream & Frozen Yogurt",
+    "chunk_count": 262
+  },
+  "OINbC0rpDVJ5bfxt3LO9fw": {
+    "name": "Li'l Dizzy's Cafe",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Restaurants",
+    "chunk_count": 51
+  },
+  "tYCok-NtWvg8_k7woeB83w": {
+    "name": "Grand Lux Cafe",
+    "city": "Cherry Hill",
+    "stars": 3.5,
+    "categories": "Desserts",
+    "chunk_count": 65
+  },
+  "UUpwoAAZcJyUWOqp81_3mA": {
+    "name": "Cajun Encounters Tour Company",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Transportation",
+    "chunk_count": 84
+  },
+  "hS6KNGCQVTYUdLb2edt58g": {
+    "name": "Steamboat Natchez",
+    "city": "New Orleans",
+    "stars": 3.5,
+    "categories": "Boat Charters",
+    "chunk_count": 86
+  },
+  "nRKndeZLQ3eDL10UMwS2rQ": {
+    "name": "Ted Drewes",
+    "city": "Saint Louis",
+    "stars": 4.5,
+    "categories": "Ice Cream & Frozen Yogurt",
+    "chunk_count": 77
+  },
+  "cB_9eHHfo9me96cZup-lZQ": {
+    "name": "The Saint Hotel, Autograph Collection",
+    "city": "New Orleans",
+    "stars": 3.5,
+    "categories": "Hotels",
+    "chunk_count": 56
+  },
+  "yE1raqkLX7OZsjmX3qKIKg": {
+    "name": "Butcher & Bee",
+    "city": "Nashville",
+    "stars": 4.0,
+    "categories": "Middle Eastern",
+    "chunk_count": 87
+  },
+  "DRr5xdfHtqgWfhmdTU1B8Q": {
+    "name": "London Grill",
+    "city": "Philadelphia",
+    "stars": 3.0,
+    "categories": "Breakfast & Brunch",
+    "chunk_count": 68
+  },
+  "dyVKL3qKsz_XDxtjpbNcgQ": {
+    "name": "El Charro Cafe",
+    "city": "Oro Valley",
+    "stars": 3.5,
+    "categories": "Mexican",
+    "chunk_count": 64
+  },
+  "_RwlMTw9uFeOkfX9Ctf1HA": {
+    "name": "Dinardo's Famous Crabs",
+    "city": "Philadelphia",
+    "stars": 2.5,
+    "categories": "American (Traditional)",
+    "chunk_count": 57
+  },
+  "SwBhaxfQPbyhsi0QHUAN0A": {
+    "name": "Seminole Hard Rock Hotel & Casino Tampa",
+    "city": "Tampa",
+    "stars": 2.5,
+    "categories": "Food",
+    "chunk_count": 109
+  },
+  "_aKr7POnacW_VizRKBpCiA": {
+    "name": "Blues City Deli",
+    "city": "Saint Louis",
+    "stars": 5.0,
+    "categories": "Delis",
+    "chunk_count": 52
+  },
+  "fGYnHzFr1z2kv7bPRW6VMA": {
+    "name": "Limoncello Ristorante & Caterers",
+    "city": "West Chester",
+    "stars": 4.0,
+    "categories": "Pizza",
+    "chunk_count": 54
+  },
+  "j8JOZvfeHEfUWq3gEz6ABQ": {
+    "name": "Bacchanal Fine Wine & Spirits",
+    "city": "New Orleans",
+    "stars": 4.5,
+    "categories": "Jazz & Blues",
+    "chunk_count": 88
+  },
+  "mcr1lAEdvGLMJhuPwI3I2A": {
+    "name": "101 Taiwanese Cuisine",
+    "city": "Reno",
+    "stars": 4.0,
+    "categories": "Food",
+    "chunk_count": 104
+  },
+  "GUMVStVaJfWmCIpQA4TtHg": {
+    "name": "Crazy Sushi",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 75
+  },
+  "kjhIbW8NKRvXmLDwz7lzhw": {
+    "name": "Margaritaville - Nashville",
+    "city": "Nashville",
+    "stars": 3.5,
+    "categories": "Nightlife",
+    "chunk_count": 53
+  },
+  "Q-prSTdggNlxAEFV88BZOw": {
+    "name": "Tria Cafe Wash West",
+    "city": "Philadelphia",
+    "stars": 4.5,
+    "categories": "Beer",
+    "chunk_count": 67
+  },
+  "sdFJSq-EgmtplIwUamRwTQ": {
+    "name": "Bayou Burger & Sports Company",
+    "city": "New Orleans",
+    "stars": 3.5,
+    "categories": "Beer",
+    "chunk_count": 63
+  },
+  "gGyqnAlpFrka_qzpO7j4lQ": {
+    "name": "Citizens Bank Park",
+    "city": "Philadelphia",
+    "stars": 4.5,
+    "categories": "Active Life",
+    "chunk_count": 54
+  },
+  "lRbHFOIFuusN2WOR_ypQ_A": {
+    "name": "Ants Pants Café",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 70
+  },
+  "cXSyVvOr9YRN9diDkaWs0Q": {
+    "name": "Honey's Sit-N-Eat",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Southern",
+    "chunk_count": 127
+  },
+  "D5V0Fawd6ODVgqCY8xngsw": {
+    "name": "Loews Philadelphia Hotel",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Event Planning & Services",
+    "chunk_count": 90
+  },
+  "C1D2o1VV2TDjpkG3BsdseA": {
+    "name": "San Antonio Taco Co",
+    "city": "Nashville",
+    "stars": 3.5,
+    "categories": "Tex-Mex",
+    "chunk_count": 68
+  },
+  "-ATiAtTikuGuqvaW2O6tNA": {
+    "name": "Marathon",
+    "city": "Philadelphia",
+    "stars": 3.5,
+    "categories": "Sandwiches",
+    "chunk_count": 81
+  },
+  "D73evJ9PZKxO3E5TaThe3w": {
+    "name": "Superior Grill",
+    "city": "New Orleans",
+    "stars": 3.0,
+    "categories": "Tex-Mex",
+    "chunk_count": 55
+  },
+  "ltBBYdNzkeKdCNPDAsxwAA": {
+    "name": "Tavern",
+    "city": "Nashville",
+    "stars": 4.0,
+    "categories": "Cocktail Bars",
+    "chunk_count": 154
+  },
+  "EpREWeEpmR8f1qLHzzF0AA": {
+    "name": "Schlafly Bottleworks",
+    "city": "Saint Louis",
+    "stars": 4.0,
+    "categories": "Local Flavor",
+    "chunk_count": 87
+  },
+  "M0c99tzIJPIbrY_RAO7KSQ": {
+    "name": "Hyatt Regency St. Louis at the Arch",
+    "city": "Saint Louis",
+    "stars": 3.5,
+    "categories": "Event Planning & Services",
+    "chunk_count": 69
+  },
+  "9V0LMtO1riRw9-pUuG4NFg": {
+    "name": "Delicia",
+    "city": "Indianapolis",
+    "stars": 4.5,
+    "categories": "Latin American",
+    "chunk_count": 59
+  },
+  "uIZwBkvWicqyWraXvYOipw": {
+    "name": "Sbraga",
+    "city": "Philadelphia",
+    "stars": 4.0,
+    "categories": "Restaurants",
+    "chunk_count": 118
+  },
+  "gebiRewfieSdtt17PTW6Zg": {
+    "name": "Hibachi Steak House & Sushi Bar",
+    "city": "Santa Barbara",
+    "stars": 3.5,
+    "categories": "Steakhouses",
+    "chunk_count": 72
+  },
+  "F2C5ENuY8CXfgoW-gAMdDA": {
+    "name": "Revolucion",
+    "city": "Indianapolis",
+    "stars": 3.5,
+    "categories": "Bars",
+    "chunk_count": 73
+  },
+  "Zi-F-YvyVOK0k5QD7lrLOg": {
+    "name": "Muriel's Jackson Square",
+    "city": "New Orleans",
+    "stars": 4.0,
+    "categories": "Cajun/Creole",
+    "chunk_count": 156
+  }
+}

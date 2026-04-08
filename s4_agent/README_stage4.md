@@ -47,6 +47,8 @@ User Question
 
 ## Demo
 
+🚀 **Live Demo:** [huggingface.co/spaces/YUHAN03/yelp-agent](https://huggingface.co/spaces/YUHAN03/yelp-agent)
+
 **RAG Baseline** — Fixed retrieval pipeline (Stats → Search → Summarize):
 
 ![RAG Baseline Demo](RAG_Baseline.gif)

@@ -303,6 +303,8 @@ Final label: {标签}
 
 ### Demo 演示
 
+🚀 **在线演示：** [huggingface.co/spaces/YUHAN03/yelp-agent](https://huggingface.co/spaces/YUHAN03/yelp-agent)
+
 **RAG Baseline** — 固定流程：统计 → 检索 → 综合：
 
 ![RAG Baseline Demo](s4_agent/RAG_Baseline.gif)
